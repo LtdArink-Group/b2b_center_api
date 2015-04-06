@@ -1,0 +1,3539 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn:ws" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn:ws">
+<types>
+<xsd:schema elementFormDefault="qualified" targetNamespace="urn:ws"
+>
+ <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+ <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+ <xsd:complexType name="auth_info">
+  <xsd:sequence>
+   <xsd:element name="login" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="password" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="response_status">
+  <xsd:sequence>
+   <xsd:element name="error_code" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="error_message" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="message" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_status">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_integer">
+  <xsd:sequence>
+   <xsd:element name="value" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_string">
+  <xsd:sequence>
+   <xsd:element name="value" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_date">
+  <xsd:sequence>
+   <xsd:element name="value" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_datetime">
+  <xsd:sequence>
+   <xsd:element name="value" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="service_row">
+  <xsd:sequence>
+   <xsd:element name="id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="array_of_services">
+  <xsd:sequence>
+   <xsd:element name="service" type="tns:service_row" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="firm_info">
+  <xsd:sequence>
+   <xsd:element name="date_lastedit" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="org_name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="org_name_short" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="code_okpo" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="bank_name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="bank_inn" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="ogrn" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="ogrn_given" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="ogrn_date_given" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="bank_kpp" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="bank_bik" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="bank_r_account" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="bank_c_account" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="bank_comments" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="jury_address" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="post_address" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="fact_address" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="site_url" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="certification" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="org_details" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="bank_details" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="country" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="bosses" type="tns:bosses_users" minOccurs="0" maxOccurs="unbounded"/>
+   <xsd:element name="is_smb" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_firm_info">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="firm_info" type="tns:firm_info" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="department_data">
+  <xsd:sequence>
+   <xsd:element name="id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="firm_id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="description" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="status" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="type" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="date_modified" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_department_data">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="department_data" type="tns:department_data" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="user_data">
+  <xsd:sequence>
+   <xsd:element name="id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="firm_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="login" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="password" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="lastname" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="firstname" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="midname" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="email" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="phone" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="fax" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="document" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="department_id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="position" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="status" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="permissions" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="ext_id" type="xsd:long" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_user_data">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="user_data" type="tns:user_data" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="okdp_row">
+  <xsd:sequence>
+   <xsd:element name="id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="parent_id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="date_modified" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_okdp_rows">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="okdp_rows" type="tns:okdp_row" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="array_of_ids">
+  <xsd:sequence>
+   <xsd:element name="string" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_array_of_ids">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="ids" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="associative_row">
+  <xsd:sequence>
+   <xsd:element name="name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="value" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="associative_array">
+  <xsd:sequence>
+   <xsd:element name="row" type="tns:associative_row" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_associative_array">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="array" type="tns:associative_array" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="file">
+  <xsd:sequence>
+   <xsd:element name="title" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="description" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="name" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="array_of_files">
+  <xsd:sequence>
+   <xsd:element name="file" type="tns:file" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_doc">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="doc" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="date" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_file">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="file_name" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="address_data">
+  <xsd:sequence>
+   <xsd:element name="id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="firm_id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="country" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="region" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="okato" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="address" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="comment" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="lat" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="lng" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="status" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_address_data">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="address_data" type="tns:address_data" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="firm_request">
+  <xsd:sequence>
+   <xsd:element name="ogrn" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="inn" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="okpo" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="bank_kpp" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="firm_data">
+  <xsd:sequence>
+   <xsd:element name="id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="org_name_short" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="org_name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="ogrn" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="inn" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="okpo" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="bank_kpp" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_find_firm">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="firm_data" type="tns:firm_data" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="array_of_firm_data">
+  <xsd:sequence>
+   <xsd:element name="firm_data" type="tns:firm_data" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="firm_tender">
+  <xsd:sequence>
+   <xsd:element name="tender_id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="organizer_firm" type="tns:firm_data" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="common_name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="date_begin" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="date_unsealing" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="opened" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="winners_firms" type="tns:array_of_firm_data" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="participants_count" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="offers_count" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="date_offer" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="array_of_firm_tenders">
+  <xsd:sequence>
+   <xsd:element name="firm_tender" type="tns:firm_tender" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_firm_tenders">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="firm_data" type="tns:firm_data" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="firm_tenders" type="tns:array_of_firm_tenders" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_modified_purchases">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="modified_purchases" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_register_firm">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="register_result" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_array_explanations">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="explanations" type="tns:explanation" minOccurs="1" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="explanation">
+  <xsd:sequence>
+   <xsd:element name="id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="question" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="answer" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="user_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="date" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="published" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="file" type="tns:file" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_worksheets">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="worksheets" type="tns:worksheets" minOccurs="1" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="worksheets">
+  <xsd:sequence>
+   <xsd:element name="firm_worksheets" type="tns:firm_worksheets" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="firm_worksheets">
+  <xsd:sequence>
+   <xsd:element name="firm_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="worksheet_data" type="tns:worksheet_data" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="worksheet_data">
+  <xsd:sequence>
+   <xsd:element name="title" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="values" type="tns:worksheet_data_value" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="worksheet_data_value">
+  <xsd:sequence>
+   <xsd:element name="identifier" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="value" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="bosses_users">
+  <xsd:sequence>
+   <xsd:element name="lastname" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="firstname" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="midname" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="phone" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="position" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="cancel_info">
+  <xsd:sequence>
+   <xsd:element name="date" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="reason" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_cancel_info">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="cancel_info" type="tns:cancel_info" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.getServicesRequestType"/>
+ <xsd:complexType name="RemoteMarket.getServicesResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:array_of_services" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.getFirmInfoRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="firm_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.getFirmInfoResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_firm_info" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.getFirmPropertiesRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="firm_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="prop_keys" type="tns:array_of_ids" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.getFirmPropertiesResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_associative_array" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.getClassifierRowsRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="ids" type="tns:array_of_ids" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="is_parent" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.getClassifierRowsResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_okdp_rows" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.getModifiedClassifierRowsRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="date_from" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.getModifiedClassifierRowsResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_okdp_rows" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.updateUserRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="data" type="tns:user_data" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.updateUserResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.getUserRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="user_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.getUserResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_user_data" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.deleteUserRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="user_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.deleteUserResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.getUsersIdsRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="firm_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.getUsersIdsResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_array_of_ids" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.updateDepartmentRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="data" type="tns:department_data" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.updateDepartmentResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.getDepartmentRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="department_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.getDepartmentResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_department_data" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.deleteDepartmentRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="department_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.deleteDepartmentResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.getDepartmentsIdsRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="firm_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.getDepartmentsIdsResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_array_of_ids" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.getHierarchyFirmsRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.getHierarchyFirmsResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_array_of_ids" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.updateAddressRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="data" type="tns:address_data" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.updateAddressResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.getAddressRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="address_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.getAddressResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_address_data" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.deleteAddressRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="address_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.deleteAddressResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.getAddressesIdsRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="firm_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.getAddressesIdsResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_array_of_ids" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.getAddressIdByOkatoRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="country" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="okato" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="address" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="firm_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.getAddressIdByOkatoResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.findFirmRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="firm_request" type="tns:firm_request" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.findFirmResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_find_firm" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.findFirmTendersRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="firm_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="find_options" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.findFirmTendersResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_firm_tenders" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.getFirmClassifierRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="firm_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="type" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.getFirmClassifierResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_array_of_ids" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.getModifiedPurchasesRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="modified_after" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="skip" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="count" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.getModifiedPurchasesResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_modified_purchases" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.getModifiedPurchases223fzRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="iframe" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="modified_after" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="skip" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="count" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteMarket.getModifiedPurchases223fzResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_modified_purchases" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="lot">
+  <xsd:sequence>
+   <xsd:element name="lot_id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="lot_name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="classifier_ids" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="okved_codes" type="tns:array_of_ids" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="quantity" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="units" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="price_begin" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="price_begin_notax" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="addresses_ids" type="tns:array_of_ids" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="customer" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="ext_id" type="xsd:long" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="array_of_lot">
+  <xsd:sequence>
+   <xsd:element name="lot" type="tns:lot" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="tender_data">
+  <xsd:sequence>
+   <xsd:element name="id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="open" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="common_name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="lots" type="tns:array_of_lot" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="date_job_begin" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="date_job_end" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="date_unsealing" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="date_unsealing_comment" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="committee" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="participants" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="date_qualification" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="qualification_documents" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="tender_documents" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="applications_deposit" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="competitive_offers" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="unsealing" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="price_only" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="winner" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="initial_price" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="protocol_currency" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="additional_information" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="haggling" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="sel_dep_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="responsible_user_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="guarantee" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="guarantee_amount" type="xsd:double" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="guarantee_valid_from" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="guarantee_valid_to" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="price_main" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="alternative_offers" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="url" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="consideration_date" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="consideration_place" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="responsible_user_phone" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="responsible_user_email" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="customer_firm_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="customer_fact_address" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="customer_post_address" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="summarizing_date" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="summarizing_place" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_tender_data">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="tender_data" type="tns:tender_data" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="tender_participant">
+  <xsd:sequence>
+   <xsd:element name="firm_id" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="status" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="date_sent" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="date_qoffer" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="date_offer" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="qualified" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="date_qualified" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="offers_nums" type="tns:array_of_ids" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="tender_participants">
+  <xsd:sequence>
+   <xsd:element name="participant" type="tns:tender_participant" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_tender_participants">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="value" type="tns:tender_participants" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_tender_offer">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="offer" type="tns:array_of_files" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="lots" type="xsd:integer" minOccurs="0" maxOccurs="unbounded"/>
+   <xsd:element name="haggling_file_name" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="tender_lot_data">
+  <xsd:sequence>
+   <xsd:element name="lot_id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="lot_result" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="lot_price" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="lot_subject" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="lot_essential" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="lot_reason" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="array_of_tender_lot_result">
+  <xsd:sequence>
+   <xsd:element name="lot_result" type="tns:tender_lot_data" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="tender_offer_result">
+  <xsd:sequence>
+   <xsd:element name="reject" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="lot" type="tns:array_of_tender_lot_result" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="tender_lot_rank">
+  <xsd:sequence>
+   <xsd:element name="lot_id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="result" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="ranking" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="reason" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="committee_id" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="array_of_tender_lot_rank">
+  <xsd:sequence>
+   <xsd:element name="lot_rank" type="tns:tender_lot_rank" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="tender_rank">
+  <xsd:sequence>
+   <xsd:element name="lot" type="tns:array_of_tender_lot_rank" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="committee_vote">
+  <xsd:sequence>
+   <xsd:element name="user_id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="vote" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="speak" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="opinion" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="protocol_data">
+  <xsd:sequence>
+   <xsd:element name="number" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="date" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="place" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="file" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="result" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="reason" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_protocol_data">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="protocol_data" type="tns:protocol_data" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="tender_lot_result">
+  <xsd:sequence>
+   <xsd:element name="firm_id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="alternate_num" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="result" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="reason" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="rank" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="price" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="price_notax" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="subject" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="essential" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="haggling_price" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="haggling_price_notax" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="final_price" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="final_price_notax" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="tender_lot_results">
+  <xsd:sequence>
+   <xsd:element name="tender_lot_result" type="tns:tender_lot_result" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_tender_lot_results">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="results" type="tns:tender_lot_results" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="haggling_status">
+  <xsd:sequence>
+   <xsd:element name="date_haggling" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="lots_ids" type="tns:array_of_ids" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="haggling_date" type="tns:array_of_ids" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_haggling_status">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="haggling_status" type="tns:haggling_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_haggling_file">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="haggling_file" type="tns:haggling_file" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="haggling_file">
+  <xsd:sequence>
+   <xsd:element name="title" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="description" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="name" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="urls">
+  <xsd:sequence>
+   <xsd:element name="url" type="xsd:string" minOccurs="1" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.createRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="tender_data" type="tns:tender_data" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.createResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.updateRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="tender_data" type="tns:tender_data" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.updateResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getDataRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="tender_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getDataResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_tender_data" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.startRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="tender_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.startResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.uploadDocRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="tender_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="type" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="url" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.uploadDocResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.uploadDocsRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="tender_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="type" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="urls" type="tns:urls" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.uploadDocsResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getParticipantsRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="tender_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getParticipantsResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_tender_participants" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getOfferRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="tender_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="firm_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="offer_num" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getOfferResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_tender_offer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getLotResultRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="tender_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="lot_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getLotResultResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_tender_lot_results" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.setUnsealingProtocolRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="tender_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="number" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="date" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="place" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="comments" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.setUnsealingProtocolResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.setProtocolRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="tender_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="protocol" type="tns:protocol_data" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.setProtocolResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getProtocolRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="tender_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getProtocolResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_protocol_data" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.sendProtocolRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="tender_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.sendProtocolResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.deleteRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="tender_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.deleteResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getDocRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="tender_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="key" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getDocResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_doc" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getDocAsFileRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="tender_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="key" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getDocAsFileResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_file" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.signRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="tender_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="key" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="signed_doc" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="date" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.signResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getIdsRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="firm_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="open" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="status" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getIdsResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_array_of_ids" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getHagglingStatusRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="tender_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getHagglingStatusResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_haggling_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getHagglingFileRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="tender_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="lot_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="firm_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="offer_num" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getHagglingFileResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_haggling_file" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.createExplanationRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="tender_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="explanation" type="tns:explanation" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.createExplanationResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getListExplanationRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auction_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getListExplanationResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_array_explanations" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.answerExplanationRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="explanation" type="tns:explanation" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.answerExplanationResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getLotsStatusRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="tender_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getLotsStatusResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_associative_array" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getWorksheetsRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="tender_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getWorksheetsResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_worksheets" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getCancelDataRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="tender_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getCancelDataResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_cancel_info" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getPublicationDateRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="tender_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getPublicationDateResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_datetime" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getRegisteredFirmsRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="tender_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteTender.getRegisteredFirmsResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_firm_info" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="custom_field_select_option">
+  <xsd:sequence>
+   <xsd:element name="option" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="allow_custom_text" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="custom_field">
+  <xsd:sequence>
+   <xsd:element name="key" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="short_name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="name" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="description" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="prop_type" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="units" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="non_obligatory" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="private" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="unified" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="select_options" type="tns:custom_field_select_option" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="custom_fields">
+  <xsd:sequence>
+   <xsd:element name="field" type="tns:custom_field" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="auction_position">
+  <xsd:sequence>
+   <xsd:element name="number" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="group_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="quantity" type="xsd:double" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="units" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="price_unit" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="price_unit_notax" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="price_lot" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="price_lot_notax" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="custom_values" type="tns:associative_array" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="auction_positions">
+  <xsd:sequence>
+   <xsd:element name="position" type="tns:auction_position" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="auction_positions_group">
+  <xsd:sequence>
+   <xsd:element name="group_id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="auction_positions_groups">
+  <xsd:sequence>
+   <xsd:element name="position_group" type="tns:auction_positions_group" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="auction_data">
+  <xsd:sequence>
+   <xsd:element name="id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="type" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="board_extended_type" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auction_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="number_in_group" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="department_id" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="classifier_ids" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="okved_code" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="comments" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="service" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="product" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="link_url" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="quantity" type="xsd:double" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="units" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="price_unit" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="price_unit_notax" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="price_lot" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="price_lot_notax" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="price_main" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="currency" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="bet_step" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="conditions" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="place" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="files" type="tns:array_of_ids" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="description" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="info_files" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="date_end" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="date_end_unsealing" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="date_start" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="date_unsealing" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="responsible_user_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="addresses_ids" type="tns:array_of_ids" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="alternative_offers" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="url" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="customer_firm_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="organizer_phone" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="organizer_email" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="organizer_fact_address" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="organizer_post_address" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="require_offer_doc" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="multiposition" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="allow_positions_groups" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="allow_positions_no_price" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="consideration_date" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="consideration_place" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="results_date" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="zgr_export" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="multi_stages" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="is_private" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="allow_positions_analog" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="small_purchase" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="tender_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="tender_lot_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_auction_data">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="data" type="tns:auction_data" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="auction_participant">
+  <xsd:sequence>
+   <xsd:element name="firm_id" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="offers_nums" type="tns:array_of_ids" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="array_of_auction_participant">
+  <xsd:sequence>
+   <xsd:element name="participant" type="tns:auction_participant" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_auction_participants">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="participants" type="tns:array_of_auction_participant" minOccurs="1" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="auction_offer">
+  <xsd:sequence>
+   <xsd:element name="final_price" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="final_price_notax" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="final_bet_date" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="winner" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="bets" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="files" type="tns:array_of_files" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="offer_fields" type="tns:auction_offer_fields" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="positions_offers" type="tns:auction_positions_offers" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="auction_positions_offers">
+  <xsd:sequence>
+   <xsd:element name="position_offer" type="tns:auction_position_offer" minOccurs="1" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="auction_position_offer">
+  <xsd:sequence>
+   <xsd:element name="position_number" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="price_lot" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="price_lot_notax" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="winner" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="position_fields" type="tns:auction_position_fields" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_auction_offer">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="auction_offer" type="tns:auction_offer" minOccurs="1" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_auction_offers_history">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="auction_offers" type="tns:auction_offers_for_history" minOccurs="1" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="auction_offers_for_history">
+  <xsd:sequence>
+   <xsd:element name="auction_offer" type="tns:auction_offer_for_history" minOccurs="1" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="auction_offer_for_history">
+  <xsd:sequence>
+   <xsd:element name="price" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="price_notax" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="offer_date" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="winner" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="firm_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="offer_fields" type="tns:auction_offer_fields" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="positions_offers" type="tns:auction_positions_offers" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="auction_position_fields">
+  <xsd:sequence>
+   <xsd:element name="position_field" type="tns:auction_position_field" minOccurs="1" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="auction_position_field">
+  <xsd:sequence>
+   <xsd:element name="short_name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="name" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="description" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="units" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="private" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="value" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="auction_offer_fields">
+  <xsd:sequence>
+   <xsd:element name="offer_field" type="tns:auction_offer_field" minOccurs="1" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="auction_offer_field">
+  <xsd:sequence>
+   <xsd:element name="short_name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="name" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="description" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="units" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="private" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="value" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="auction_bet">
+  <xsd:sequence>
+   <xsd:element name="price" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="price_notax" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="bet_date" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="subject" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="user_id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="auto_bet" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="final_price" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="final_price_notax" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="signed_doc_id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_auction_bet">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="auction_bet" type="tns:auction_bet" minOccurs="1" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="auction_protocol">
+  <xsd:sequence>
+   <xsd:element name="number" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="date" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="place" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="file" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="result" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="reason" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_auction_protocol">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="auction_protocol" type="tns:auction_protocol" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="auction_info">
+  <xsd:sequence>
+   <xsd:element name="auction_id" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="type" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="organizer_firm" type="tns:firm_data" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="name" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="date_begin" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="date_end" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="opened" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="winners_firms" type="tns:array_of_firm_data" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="bets_count" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="participants_count" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="last_bet_date" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="array_of_auction_info">
+  <xsd:sequence>
+   <xsd:element name="auction_info" type="tns:auction_info" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_participant_auctions">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="firm_data" type="tns:firm_data" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auctions" type="tns:array_of_auction_info" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="positions_won_by_alt_number">
+  <xsd:sequence>
+   <xsd:element name="position_numbers" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="alternate_num" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="winner_data">
+  <xsd:sequence>
+   <xsd:element name="firm_id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="positions_bets" type="tns:positions_won_by_alt_number" minOccurs="0" maxOccurs="3"/>
+   <xsd:element name="alternate_num" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="winners_data_array">
+  <xsd:sequence>
+   <xsd:element name="winner_data" type="tns:winner_data" minOccurs="1" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.createRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="data" type="tns:auction_data" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.createResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.updateRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="data" type="tns:auction_data" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.updateResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.setPositionsRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auction_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="positions" type="tns:auction_positions" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="positions_fields" type="tns:custom_fields" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="offers_fields" type="tns:custom_fields" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.setPositionsResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.setPositionGroupsRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auction_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="groups" type="tns:auction_positions_groups" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.setPositionGroupsResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.clearPositionsRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auction_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.clearPositionsResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.setOffersFieldsRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auction_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="offers_fields" type="tns:custom_fields" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.setOffersFieldsResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.addOffersFieldsRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auction_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="offers_fields" type="tns:custom_fields" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.addOffersFieldsResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.clearOffersFieldsRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auction_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.clearOffersFieldsResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.getDataRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auction_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.getDataResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_auction_data" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.deleteRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auction_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.deleteResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.publishRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auction_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.publishResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.uploadDocRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auction_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="type" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="url" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.uploadDocResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.uploadDocsRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auction_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="type" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="urls" type="tns:urls" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.uploadDocsResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.getParticipantsRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auction_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.getParticipantsResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_auction_participants" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.getOfferRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auction_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="firm_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="offer_num" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.getOfferResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_auction_offer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.getOffersHistoryRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auction_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.getOffersHistoryResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_auction_offers_history" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.getBetRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auction_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="firm_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="offer_num" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="bet_num" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.getBetResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_auction_bet" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.getIdsRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="firm_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="type" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="status" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.getIdsResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_array_of_ids" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.getDocRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auction_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="key" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.getDocResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_doc" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.getDocAsFileRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auction_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="key" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.getDocAsFileResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_file" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.signRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auction_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="key" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="signed_doc" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="date" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.signResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.setProtocolRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auction_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="data" type="tns:auction_protocol" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.setProtocolResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.getProtocolRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auction_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.getProtocolResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_auction_protocol" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.getStatusRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auction_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.getStatusResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.findParticipantAuctionsRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="firm_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="options" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="type" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.findParticipantAuctionsResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_participant_auctions" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.createExplanationRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auction_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="explanation" type="tns:explanation" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.createExplanationResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.getListExplanationRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auction_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.getListExplanationResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_array_explanations" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.answerExplanationRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="explanation" type="tns:explanation" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.answerExplanationResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.setWinnersRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auction_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="winners" type="tns:winners_data_array" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="reason" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.setWinnersResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.confirmResultsProtocolRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auction_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.confirmResultsProtocolResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.getWorksheetsRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auction_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.getWorksheetsResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_worksheets" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.getCancelDataRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auction_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.getCancelDataResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_cancel_info" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.getPublicationDateRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auction_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.getPublicationDateResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_datetime" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.getRegisteredFirmsRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="auction_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteAuction.getRegisteredFirmsResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_firm_info" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="guarantee_limit">
+  <xsd:sequence>
+   <xsd:element name="id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="firm_id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="bank_id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="price" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="valid_from" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="valid_to" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="confirmed_date" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="array_of_guarantees_limits">
+  <xsd:sequence>
+   <xsd:element name="guarantee_limit" type="tns:guarantee_limit" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_guarantees_limits">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="limits" type="tns:array_of_guarantees_limits" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="guarantee">
+  <xsd:sequence>
+   <xsd:element name="id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="firm_id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="bank_id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="beneficiary_id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="tender_id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="lot_id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="price" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="price_coverage" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="valid_from" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="valid_to" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="send_date" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="issued_date" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="array_of_guarantees">
+  <xsd:sequence>
+   <xsd:element name="guarantee" type="tns:guarantee" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_guarantees">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="guarantees" type="tns:array_of_guarantees" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteGuarantees.getLimitsRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteGuarantees.getLimitsResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_guarantees_limits" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteGuarantees.getGuaranteesRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteGuarantees.getGuaranteesResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_guarantees" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="shop_order">
+  <xsd:sequence>
+   <xsd:element name="id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="firm_id" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="product_id" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="quantity" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="units" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="price" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="currency" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="date_confirmed" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="contract_id" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="additional_agreement" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="price_list_id" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="manager_id" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="custom_fields" type="tns:associative_array" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="shop_orders">
+  <xsd:sequence>
+   <xsd:element name="order" type="tns:shop_order" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ret_shop_orders">
+  <xsd:sequence>
+   <xsd:element name="status" type="tns:response_status" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="orders" type="tns:shop_orders" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="shop_contract">
+  <xsd:sequence>
+   <xsd:element name="id" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="customer_id" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="product_id" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="number" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="date" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="date_end" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="date_modified" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="shop_contracts">
+  <xsd:sequence>
+   <xsd:element name="contract" type="tns:shop_contract" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="shop_customer">
+  <xsd:sequence>
+   <xsd:element name="id" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="org_name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="org_name_short" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="inn" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="kpp" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="ogrn" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="date_modified" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="shop_customers">
+  <xsd:sequence>
+   <xsd:element name="customer" type="tns:shop_customer" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="shop_price_list">
+  <xsd:sequence>
+   <xsd:element name="id" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="list_id" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="name" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="product_id" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="price" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="currency" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="date_start" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="date_end" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="date_modified" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="shop_price_lists">
+  <xsd:sequence>
+   <xsd:element name="price_list" type="tns:shop_price_list" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="shop_consignee">
+  <xsd:sequence>
+   <xsd:element name="id" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="customer_id" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="customer_name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="location" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="address" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="station_code" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+   <xsd:element name="station_name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="shop_consignees">
+  <xsd:sequence>
+   <xsd:element name="consignee" type="tns:shop_consignee" minOccurs="0" maxOccurs="unbounded"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteShop.getOrdersRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteShop.getOrdersResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_shop_orders" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteShop.updateCustomersRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="customers" type="tns:shop_customers" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteShop.updateCustomersResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteShop.updateContractsRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="contracts" type="tns:shop_contracts" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteShop.updateContractsResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteShop.updatePriceListsRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="price_lists" type="tns:shop_price_lists" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteShop.updatePriceListsResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteShop.updateConsigneesRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="consignees" type="tns:shop_consignees" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteShop.updateConsigneesResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteShop.setOrderStatusRequestType">
+  <xsd:sequence>
+   <xsd:element name="auth" type="tns:auth_info" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="order_id" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="status" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+   <xsd:element name="comments" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="RemoteShop.setOrderStatusResponseType">
+  <xsd:sequence>
+   <xsd:element name="return" type="tns:ret_status" minOccurs="0" maxOccurs="1"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:element name="RemoteMarket.getServices" type="tns:RemoteMarket.getServicesRequestType"/>
+ <xsd:element name="RemoteMarket.getServicesResponse" type="tns:RemoteMarket.getServicesResponseType"/>
+ <xsd:element name="RemoteMarket.getFirmInfo" type="tns:RemoteMarket.getFirmInfoRequestType"/>
+ <xsd:element name="RemoteMarket.getFirmInfoResponse" type="tns:RemoteMarket.getFirmInfoResponseType"/>
+ <xsd:element name="RemoteMarket.getFirmProperties" type="tns:RemoteMarket.getFirmPropertiesRequestType"/>
+ <xsd:element name="RemoteMarket.getFirmPropertiesResponse" type="tns:RemoteMarket.getFirmPropertiesResponseType"/>
+ <xsd:element name="RemoteMarket.getClassifierRows" type="tns:RemoteMarket.getClassifierRowsRequestType"/>
+ <xsd:element name="RemoteMarket.getClassifierRowsResponse" type="tns:RemoteMarket.getClassifierRowsResponseType"/>
+ <xsd:element name="RemoteMarket.getModifiedClassifierRows" type="tns:RemoteMarket.getModifiedClassifierRowsRequestType"/>
+ <xsd:element name="RemoteMarket.getModifiedClassifierRowsResponse" type="tns:RemoteMarket.getModifiedClassifierRowsResponseType"/>
+ <xsd:element name="RemoteMarket.updateUser" type="tns:RemoteMarket.updateUserRequestType"/>
+ <xsd:element name="RemoteMarket.updateUserResponse" type="tns:RemoteMarket.updateUserResponseType"/>
+ <xsd:element name="RemoteMarket.getUser" type="tns:RemoteMarket.getUserRequestType"/>
+ <xsd:element name="RemoteMarket.getUserResponse" type="tns:RemoteMarket.getUserResponseType"/>
+ <xsd:element name="RemoteMarket.deleteUser" type="tns:RemoteMarket.deleteUserRequestType"/>
+ <xsd:element name="RemoteMarket.deleteUserResponse" type="tns:RemoteMarket.deleteUserResponseType"/>
+ <xsd:element name="RemoteMarket.getUsersIds" type="tns:RemoteMarket.getUsersIdsRequestType"/>
+ <xsd:element name="RemoteMarket.getUsersIdsResponse" type="tns:RemoteMarket.getUsersIdsResponseType"/>
+ <xsd:element name="RemoteMarket.updateDepartment" type="tns:RemoteMarket.updateDepartmentRequestType"/>
+ <xsd:element name="RemoteMarket.updateDepartmentResponse" type="tns:RemoteMarket.updateDepartmentResponseType"/>
+ <xsd:element name="RemoteMarket.getDepartment" type="tns:RemoteMarket.getDepartmentRequestType"/>
+ <xsd:element name="RemoteMarket.getDepartmentResponse" type="tns:RemoteMarket.getDepartmentResponseType"/>
+ <xsd:element name="RemoteMarket.deleteDepartment" type="tns:RemoteMarket.deleteDepartmentRequestType"/>
+ <xsd:element name="RemoteMarket.deleteDepartmentResponse" type="tns:RemoteMarket.deleteDepartmentResponseType"/>
+ <xsd:element name="RemoteMarket.getDepartmentsIds" type="tns:RemoteMarket.getDepartmentsIdsRequestType"/>
+ <xsd:element name="RemoteMarket.getDepartmentsIdsResponse" type="tns:RemoteMarket.getDepartmentsIdsResponseType"/>
+ <xsd:element name="RemoteMarket.getHierarchyFirms" type="tns:RemoteMarket.getHierarchyFirmsRequestType"/>
+ <xsd:element name="RemoteMarket.getHierarchyFirmsResponse" type="tns:RemoteMarket.getHierarchyFirmsResponseType"/>
+ <xsd:element name="RemoteMarket.updateAddress" type="tns:RemoteMarket.updateAddressRequestType"/>
+ <xsd:element name="RemoteMarket.updateAddressResponse" type="tns:RemoteMarket.updateAddressResponseType"/>
+ <xsd:element name="RemoteMarket.getAddress" type="tns:RemoteMarket.getAddressRequestType"/>
+ <xsd:element name="RemoteMarket.getAddressResponse" type="tns:RemoteMarket.getAddressResponseType"/>
+ <xsd:element name="RemoteMarket.deleteAddress" type="tns:RemoteMarket.deleteAddressRequestType"/>
+ <xsd:element name="RemoteMarket.deleteAddressResponse" type="tns:RemoteMarket.deleteAddressResponseType"/>
+ <xsd:element name="RemoteMarket.getAddressesIds" type="tns:RemoteMarket.getAddressesIdsRequestType"/>
+ <xsd:element name="RemoteMarket.getAddressesIdsResponse" type="tns:RemoteMarket.getAddressesIdsResponseType"/>
+ <xsd:element name="RemoteMarket.getAddressIdByOkato" type="tns:RemoteMarket.getAddressIdByOkatoRequestType"/>
+ <xsd:element name="RemoteMarket.getAddressIdByOkatoResponse" type="tns:RemoteMarket.getAddressIdByOkatoResponseType"/>
+ <xsd:element name="RemoteMarket.findFirm" type="tns:RemoteMarket.findFirmRequestType"/>
+ <xsd:element name="RemoteMarket.findFirmResponse" type="tns:RemoteMarket.findFirmResponseType"/>
+ <xsd:element name="RemoteMarket.findFirmTenders" type="tns:RemoteMarket.findFirmTendersRequestType"/>
+ <xsd:element name="RemoteMarket.findFirmTendersResponse" type="tns:RemoteMarket.findFirmTendersResponseType"/>
+ <xsd:element name="RemoteMarket.getFirmClassifier" type="tns:RemoteMarket.getFirmClassifierRequestType"/>
+ <xsd:element name="RemoteMarket.getFirmClassifierResponse" type="tns:RemoteMarket.getFirmClassifierResponseType"/>
+ <xsd:element name="RemoteMarket.getModifiedPurchases" type="tns:RemoteMarket.getModifiedPurchasesRequestType"/>
+ <xsd:element name="RemoteMarket.getModifiedPurchasesResponse" type="tns:RemoteMarket.getModifiedPurchasesResponseType"/>
+ <xsd:element name="RemoteMarket.getModifiedPurchases223fz" type="tns:RemoteMarket.getModifiedPurchases223fzRequestType"/>
+ <xsd:element name="RemoteMarket.getModifiedPurchases223fzResponse" type="tns:RemoteMarket.getModifiedPurchases223fzResponseType"/>
+ <xsd:element name="RemoteTender.create" type="tns:RemoteTender.createRequestType"/>
+ <xsd:element name="RemoteTender.createResponse" type="tns:RemoteTender.createResponseType"/>
+ <xsd:element name="RemoteTender.update" type="tns:RemoteTender.updateRequestType"/>
+ <xsd:element name="RemoteTender.updateResponse" type="tns:RemoteTender.updateResponseType"/>
+ <xsd:element name="RemoteTender.getData" type="tns:RemoteTender.getDataRequestType"/>
+ <xsd:element name="RemoteTender.getDataResponse" type="tns:RemoteTender.getDataResponseType"/>
+ <xsd:element name="RemoteTender.start" type="tns:RemoteTender.startRequestType"/>
+ <xsd:element name="RemoteTender.startResponse" type="tns:RemoteTender.startResponseType"/>
+ <xsd:element name="RemoteTender.uploadDoc" type="tns:RemoteTender.uploadDocRequestType"/>
+ <xsd:element name="RemoteTender.uploadDocResponse" type="tns:RemoteTender.uploadDocResponseType"/>
+ <xsd:element name="RemoteTender.uploadDocs" type="tns:RemoteTender.uploadDocsRequestType"/>
+ <xsd:element name="RemoteTender.uploadDocsResponse" type="tns:RemoteTender.uploadDocsResponseType"/>
+ <xsd:element name="RemoteTender.getParticipants" type="tns:RemoteTender.getParticipantsRequestType"/>
+ <xsd:element name="RemoteTender.getParticipantsResponse" type="tns:RemoteTender.getParticipantsResponseType"/>
+ <xsd:element name="RemoteTender.getOffer" type="tns:RemoteTender.getOfferRequestType"/>
+ <xsd:element name="RemoteTender.getOfferResponse" type="tns:RemoteTender.getOfferResponseType"/>
+ <xsd:element name="RemoteTender.getLotResult" type="tns:RemoteTender.getLotResultRequestType"/>
+ <xsd:element name="RemoteTender.getLotResultResponse" type="tns:RemoteTender.getLotResultResponseType"/>
+ <xsd:element name="RemoteTender.setUnsealingProtocol" type="tns:RemoteTender.setUnsealingProtocolRequestType"/>
+ <xsd:element name="RemoteTender.setUnsealingProtocolResponse" type="tns:RemoteTender.setUnsealingProtocolResponseType"/>
+ <xsd:element name="RemoteTender.setProtocol" type="tns:RemoteTender.setProtocolRequestType"/>
+ <xsd:element name="RemoteTender.setProtocolResponse" type="tns:RemoteTender.setProtocolResponseType"/>
+ <xsd:element name="RemoteTender.getProtocol" type="tns:RemoteTender.getProtocolRequestType"/>
+ <xsd:element name="RemoteTender.getProtocolResponse" type="tns:RemoteTender.getProtocolResponseType"/>
+ <xsd:element name="RemoteTender.sendProtocol" type="tns:RemoteTender.sendProtocolRequestType"/>
+ <xsd:element name="RemoteTender.sendProtocolResponse" type="tns:RemoteTender.sendProtocolResponseType"/>
+ <xsd:element name="RemoteTender.delete" type="tns:RemoteTender.deleteRequestType"/>
+ <xsd:element name="RemoteTender.deleteResponse" type="tns:RemoteTender.deleteResponseType"/>
+ <xsd:element name="RemoteTender.getDoc" type="tns:RemoteTender.getDocRequestType"/>
+ <xsd:element name="RemoteTender.getDocResponse" type="tns:RemoteTender.getDocResponseType"/>
+ <xsd:element name="RemoteTender.getDocAsFile" type="tns:RemoteTender.getDocAsFileRequestType"/>
+ <xsd:element name="RemoteTender.getDocAsFileResponse" type="tns:RemoteTender.getDocAsFileResponseType"/>
+ <xsd:element name="RemoteTender.sign" type="tns:RemoteTender.signRequestType"/>
+ <xsd:element name="RemoteTender.signResponse" type="tns:RemoteTender.signResponseType"/>
+ <xsd:element name="RemoteTender.getIds" type="tns:RemoteTender.getIdsRequestType"/>
+ <xsd:element name="RemoteTender.getIdsResponse" type="tns:RemoteTender.getIdsResponseType"/>
+ <xsd:element name="RemoteTender.getHagglingStatus" type="tns:RemoteTender.getHagglingStatusRequestType"/>
+ <xsd:element name="RemoteTender.getHagglingStatusResponse" type="tns:RemoteTender.getHagglingStatusResponseType"/>
+ <xsd:element name="RemoteTender.getHagglingFile" type="tns:RemoteTender.getHagglingFileRequestType"/>
+ <xsd:element name="RemoteTender.getHagglingFileResponse" type="tns:RemoteTender.getHagglingFileResponseType"/>
+ <xsd:element name="RemoteTender.createExplanation" type="tns:RemoteTender.createExplanationRequestType"/>
+ <xsd:element name="RemoteTender.createExplanationResponse" type="tns:RemoteTender.createExplanationResponseType"/>
+ <xsd:element name="RemoteTender.getListExplanation" type="tns:RemoteTender.getListExplanationRequestType"/>
+ <xsd:element name="RemoteTender.getListExplanationResponse" type="tns:RemoteTender.getListExplanationResponseType"/>
+ <xsd:element name="RemoteTender.answerExplanation" type="tns:RemoteTender.answerExplanationRequestType"/>
+ <xsd:element name="RemoteTender.answerExplanationResponse" type="tns:RemoteTender.answerExplanationResponseType"/>
+ <xsd:element name="RemoteTender.getLotsStatus" type="tns:RemoteTender.getLotsStatusRequestType"/>
+ <xsd:element name="RemoteTender.getLotsStatusResponse" type="tns:RemoteTender.getLotsStatusResponseType"/>
+ <xsd:element name="RemoteTender.getWorksheets" type="tns:RemoteTender.getWorksheetsRequestType"/>
+ <xsd:element name="RemoteTender.getWorksheetsResponse" type="tns:RemoteTender.getWorksheetsResponseType"/>
+ <xsd:element name="RemoteTender.getCancelData" type="tns:RemoteTender.getCancelDataRequestType"/>
+ <xsd:element name="RemoteTender.getCancelDataResponse" type="tns:RemoteTender.getCancelDataResponseType"/>
+ <xsd:element name="RemoteTender.getPublicationDate" type="tns:RemoteTender.getPublicationDateRequestType"/>
+ <xsd:element name="RemoteTender.getPublicationDateResponse" type="tns:RemoteTender.getPublicationDateResponseType"/>
+ <xsd:element name="RemoteTender.getRegisteredFirms" type="tns:RemoteTender.getRegisteredFirmsRequestType"/>
+ <xsd:element name="RemoteTender.getRegisteredFirmsResponse" type="tns:RemoteTender.getRegisteredFirmsResponseType"/>
+ <xsd:element name="RemoteAuction.create" type="tns:RemoteAuction.createRequestType"/>
+ <xsd:element name="RemoteAuction.createResponse" type="tns:RemoteAuction.createResponseType"/>
+ <xsd:element name="RemoteAuction.update" type="tns:RemoteAuction.updateRequestType"/>
+ <xsd:element name="RemoteAuction.updateResponse" type="tns:RemoteAuction.updateResponseType"/>
+ <xsd:element name="RemoteAuction.setPositions" type="tns:RemoteAuction.setPositionsRequestType"/>
+ <xsd:element name="RemoteAuction.setPositionsResponse" type="tns:RemoteAuction.setPositionsResponseType"/>
+ <xsd:element name="RemoteAuction.setPositionGroups" type="tns:RemoteAuction.setPositionGroupsRequestType"/>
+ <xsd:element name="RemoteAuction.setPositionGroupsResponse" type="tns:RemoteAuction.setPositionGroupsResponseType"/>
+ <xsd:element name="RemoteAuction.clearPositions" type="tns:RemoteAuction.clearPositionsRequestType"/>
+ <xsd:element name="RemoteAuction.clearPositionsResponse" type="tns:RemoteAuction.clearPositionsResponseType"/>
+ <xsd:element name="RemoteAuction.setOffersFields" type="tns:RemoteAuction.setOffersFieldsRequestType"/>
+ <xsd:element name="RemoteAuction.setOffersFieldsResponse" type="tns:RemoteAuction.setOffersFieldsResponseType"/>
+ <xsd:element name="RemoteAuction.addOffersFields" type="tns:RemoteAuction.addOffersFieldsRequestType"/>
+ <xsd:element name="RemoteAuction.addOffersFieldsResponse" type="tns:RemoteAuction.addOffersFieldsResponseType"/>
+ <xsd:element name="RemoteAuction.clearOffersFields" type="tns:RemoteAuction.clearOffersFieldsRequestType"/>
+ <xsd:element name="RemoteAuction.clearOffersFieldsResponse" type="tns:RemoteAuction.clearOffersFieldsResponseType"/>
+ <xsd:element name="RemoteAuction.getData" type="tns:RemoteAuction.getDataRequestType"/>
+ <xsd:element name="RemoteAuction.getDataResponse" type="tns:RemoteAuction.getDataResponseType"/>
+ <xsd:element name="RemoteAuction.delete" type="tns:RemoteAuction.deleteRequestType"/>
+ <xsd:element name="RemoteAuction.deleteResponse" type="tns:RemoteAuction.deleteResponseType"/>
+ <xsd:element name="RemoteAuction.publish" type="tns:RemoteAuction.publishRequestType"/>
+ <xsd:element name="RemoteAuction.publishResponse" type="tns:RemoteAuction.publishResponseType"/>
+ <xsd:element name="RemoteAuction.uploadDoc" type="tns:RemoteAuction.uploadDocRequestType"/>
+ <xsd:element name="RemoteAuction.uploadDocResponse" type="tns:RemoteAuction.uploadDocResponseType"/>
+ <xsd:element name="RemoteAuction.uploadDocs" type="tns:RemoteAuction.uploadDocsRequestType"/>
+ <xsd:element name="RemoteAuction.uploadDocsResponse" type="tns:RemoteAuction.uploadDocsResponseType"/>
+ <xsd:element name="RemoteAuction.getParticipants" type="tns:RemoteAuction.getParticipantsRequestType"/>
+ <xsd:element name="RemoteAuction.getParticipantsResponse" type="tns:RemoteAuction.getParticipantsResponseType"/>
+ <xsd:element name="RemoteAuction.getOffer" type="tns:RemoteAuction.getOfferRequestType"/>
+ <xsd:element name="RemoteAuction.getOfferResponse" type="tns:RemoteAuction.getOfferResponseType"/>
+ <xsd:element name="RemoteAuction.getOffersHistory" type="tns:RemoteAuction.getOffersHistoryRequestType"/>
+ <xsd:element name="RemoteAuction.getOffersHistoryResponse" type="tns:RemoteAuction.getOffersHistoryResponseType"/>
+ <xsd:element name="RemoteAuction.getBet" type="tns:RemoteAuction.getBetRequestType"/>
+ <xsd:element name="RemoteAuction.getBetResponse" type="tns:RemoteAuction.getBetResponseType"/>
+ <xsd:element name="RemoteAuction.getIds" type="tns:RemoteAuction.getIdsRequestType"/>
+ <xsd:element name="RemoteAuction.getIdsResponse" type="tns:RemoteAuction.getIdsResponseType"/>
+ <xsd:element name="RemoteAuction.getDoc" type="tns:RemoteAuction.getDocRequestType"/>
+ <xsd:element name="RemoteAuction.getDocResponse" type="tns:RemoteAuction.getDocResponseType"/>
+ <xsd:element name="RemoteAuction.getDocAsFile" type="tns:RemoteAuction.getDocAsFileRequestType"/>
+ <xsd:element name="RemoteAuction.getDocAsFileResponse" type="tns:RemoteAuction.getDocAsFileResponseType"/>
+ <xsd:element name="RemoteAuction.sign" type="tns:RemoteAuction.signRequestType"/>
+ <xsd:element name="RemoteAuction.signResponse" type="tns:RemoteAuction.signResponseType"/>
+ <xsd:element name="RemoteAuction.setProtocol" type="tns:RemoteAuction.setProtocolRequestType"/>
+ <xsd:element name="RemoteAuction.setProtocolResponse" type="tns:RemoteAuction.setProtocolResponseType"/>
+ <xsd:element name="RemoteAuction.getProtocol" type="tns:RemoteAuction.getProtocolRequestType"/>
+ <xsd:element name="RemoteAuction.getProtocolResponse" type="tns:RemoteAuction.getProtocolResponseType"/>
+ <xsd:element name="RemoteAuction.getStatus" type="tns:RemoteAuction.getStatusRequestType"/>
+ <xsd:element name="RemoteAuction.getStatusResponse" type="tns:RemoteAuction.getStatusResponseType"/>
+ <xsd:element name="RemoteAuction.findParticipantAuctions" type="tns:RemoteAuction.findParticipantAuctionsRequestType"/>
+ <xsd:element name="RemoteAuction.findParticipantAuctionsResponse" type="tns:RemoteAuction.findParticipantAuctionsResponseType"/>
+ <xsd:element name="RemoteAuction.createExplanation" type="tns:RemoteAuction.createExplanationRequestType"/>
+ <xsd:element name="RemoteAuction.createExplanationResponse" type="tns:RemoteAuction.createExplanationResponseType"/>
+ <xsd:element name="RemoteAuction.getListExplanation" type="tns:RemoteAuction.getListExplanationRequestType"/>
+ <xsd:element name="RemoteAuction.getListExplanationResponse" type="tns:RemoteAuction.getListExplanationResponseType"/>
+ <xsd:element name="RemoteAuction.answerExplanation" type="tns:RemoteAuction.answerExplanationRequestType"/>
+ <xsd:element name="RemoteAuction.answerExplanationResponse" type="tns:RemoteAuction.answerExplanationResponseType"/>
+ <xsd:element name="RemoteAuction.setWinners" type="tns:RemoteAuction.setWinnersRequestType"/>
+ <xsd:element name="RemoteAuction.setWinnersResponse" type="tns:RemoteAuction.setWinnersResponseType"/>
+ <xsd:element name="RemoteAuction.confirmResultsProtocol" type="tns:RemoteAuction.confirmResultsProtocolRequestType"/>
+ <xsd:element name="RemoteAuction.confirmResultsProtocolResponse" type="tns:RemoteAuction.confirmResultsProtocolResponseType"/>
+ <xsd:element name="RemoteAuction.getWorksheets" type="tns:RemoteAuction.getWorksheetsRequestType"/>
+ <xsd:element name="RemoteAuction.getWorksheetsResponse" type="tns:RemoteAuction.getWorksheetsResponseType"/>
+ <xsd:element name="RemoteAuction.getCancelData" type="tns:RemoteAuction.getCancelDataRequestType"/>
+ <xsd:element name="RemoteAuction.getCancelDataResponse" type="tns:RemoteAuction.getCancelDataResponseType"/>
+ <xsd:element name="RemoteAuction.getPublicationDate" type="tns:RemoteAuction.getPublicationDateRequestType"/>
+ <xsd:element name="RemoteAuction.getPublicationDateResponse" type="tns:RemoteAuction.getPublicationDateResponseType"/>
+ <xsd:element name="RemoteAuction.getRegisteredFirms" type="tns:RemoteAuction.getRegisteredFirmsRequestType"/>
+ <xsd:element name="RemoteAuction.getRegisteredFirmsResponse" type="tns:RemoteAuction.getRegisteredFirmsResponseType"/>
+ <xsd:element name="RemoteGuarantees.getLimits" type="tns:RemoteGuarantees.getLimitsRequestType"/>
+ <xsd:element name="RemoteGuarantees.getLimitsResponse" type="tns:RemoteGuarantees.getLimitsResponseType"/>
+ <xsd:element name="RemoteGuarantees.getGuarantees" type="tns:RemoteGuarantees.getGuaranteesRequestType"/>
+ <xsd:element name="RemoteGuarantees.getGuaranteesResponse" type="tns:RemoteGuarantees.getGuaranteesResponseType"/>
+ <xsd:element name="RemoteShop.getOrders" type="tns:RemoteShop.getOrdersRequestType"/>
+ <xsd:element name="RemoteShop.getOrdersResponse" type="tns:RemoteShop.getOrdersResponseType"/>
+ <xsd:element name="RemoteShop.updateCustomers" type="tns:RemoteShop.updateCustomersRequestType"/>
+ <xsd:element name="RemoteShop.updateCustomersResponse" type="tns:RemoteShop.updateCustomersResponseType"/>
+ <xsd:element name="RemoteShop.updateContracts" type="tns:RemoteShop.updateContractsRequestType"/>
+ <xsd:element name="RemoteShop.updateContractsResponse" type="tns:RemoteShop.updateContractsResponseType"/>
+ <xsd:element name="RemoteShop.updatePriceLists" type="tns:RemoteShop.updatePriceListsRequestType"/>
+ <xsd:element name="RemoteShop.updatePriceListsResponse" type="tns:RemoteShop.updatePriceListsResponseType"/>
+ <xsd:element name="RemoteShop.updateConsignees" type="tns:RemoteShop.updateConsigneesRequestType"/>
+ <xsd:element name="RemoteShop.updateConsigneesResponse" type="tns:RemoteShop.updateConsigneesResponseType"/>
+ <xsd:element name="RemoteShop.setOrderStatus" type="tns:RemoteShop.setOrderStatusRequestType"/>
+ <xsd:element name="RemoteShop.setOrderStatusResponse" type="tns:RemoteShop.setOrderStatusResponseType"/>
+</xsd:schema>
+</types>
+<message name="RemoteMarket.getServicesRequest">
+  <part name="parameters" element="tns:RemoteMarket.getServices" /></message>
+<message name="RemoteMarket.getServicesResponse">
+  <part name="parameters" element="tns:RemoteMarket.getServicesResponse" /></message>
+<message name="RemoteMarket.getFirmInfoRequest">
+  <part name="parameters" element="tns:RemoteMarket.getFirmInfo" /></message>
+<message name="RemoteMarket.getFirmInfoResponse">
+  <part name="parameters" element="tns:RemoteMarket.getFirmInfoResponse" /></message>
+<message name="RemoteMarket.getFirmPropertiesRequest">
+  <part name="parameters" element="tns:RemoteMarket.getFirmProperties" /></message>
+<message name="RemoteMarket.getFirmPropertiesResponse">
+  <part name="parameters" element="tns:RemoteMarket.getFirmPropertiesResponse" /></message>
+<message name="RemoteMarket.getClassifierRowsRequest">
+  <part name="parameters" element="tns:RemoteMarket.getClassifierRows" /></message>
+<message name="RemoteMarket.getClassifierRowsResponse">
+  <part name="parameters" element="tns:RemoteMarket.getClassifierRowsResponse" /></message>
+<message name="RemoteMarket.getModifiedClassifierRowsRequest">
+  <part name="parameters" element="tns:RemoteMarket.getModifiedClassifierRows" /></message>
+<message name="RemoteMarket.getModifiedClassifierRowsResponse">
+  <part name="parameters" element="tns:RemoteMarket.getModifiedClassifierRowsResponse" /></message>
+<message name="RemoteMarket.updateUserRequest">
+  <part name="parameters" element="tns:RemoteMarket.updateUser" /></message>
+<message name="RemoteMarket.updateUserResponse">
+  <part name="parameters" element="tns:RemoteMarket.updateUserResponse" /></message>
+<message name="RemoteMarket.getUserRequest">
+  <part name="parameters" element="tns:RemoteMarket.getUser" /></message>
+<message name="RemoteMarket.getUserResponse">
+  <part name="parameters" element="tns:RemoteMarket.getUserResponse" /></message>
+<message name="RemoteMarket.deleteUserRequest">
+  <part name="parameters" element="tns:RemoteMarket.deleteUser" /></message>
+<message name="RemoteMarket.deleteUserResponse">
+  <part name="parameters" element="tns:RemoteMarket.deleteUserResponse" /></message>
+<message name="RemoteMarket.getUsersIdsRequest">
+  <part name="parameters" element="tns:RemoteMarket.getUsersIds" /></message>
+<message name="RemoteMarket.getUsersIdsResponse">
+  <part name="parameters" element="tns:RemoteMarket.getUsersIdsResponse" /></message>
+<message name="RemoteMarket.updateDepartmentRequest">
+  <part name="parameters" element="tns:RemoteMarket.updateDepartment" /></message>
+<message name="RemoteMarket.updateDepartmentResponse">
+  <part name="parameters" element="tns:RemoteMarket.updateDepartmentResponse" /></message>
+<message name="RemoteMarket.getDepartmentRequest">
+  <part name="parameters" element="tns:RemoteMarket.getDepartment" /></message>
+<message name="RemoteMarket.getDepartmentResponse">
+  <part name="parameters" element="tns:RemoteMarket.getDepartmentResponse" /></message>
+<message name="RemoteMarket.deleteDepartmentRequest">
+  <part name="parameters" element="tns:RemoteMarket.deleteDepartment" /></message>
+<message name="RemoteMarket.deleteDepartmentResponse">
+  <part name="parameters" element="tns:RemoteMarket.deleteDepartmentResponse" /></message>
+<message name="RemoteMarket.getDepartmentsIdsRequest">
+  <part name="parameters" element="tns:RemoteMarket.getDepartmentsIds" /></message>
+<message name="RemoteMarket.getDepartmentsIdsResponse">
+  <part name="parameters" element="tns:RemoteMarket.getDepartmentsIdsResponse" /></message>
+<message name="RemoteMarket.getHierarchyFirmsRequest">
+  <part name="parameters" element="tns:RemoteMarket.getHierarchyFirms" /></message>
+<message name="RemoteMarket.getHierarchyFirmsResponse">
+  <part name="parameters" element="tns:RemoteMarket.getHierarchyFirmsResponse" /></message>
+<message name="RemoteMarket.updateAddressRequest">
+  <part name="parameters" element="tns:RemoteMarket.updateAddress" /></message>
+<message name="RemoteMarket.updateAddressResponse">
+  <part name="parameters" element="tns:RemoteMarket.updateAddressResponse" /></message>
+<message name="RemoteMarket.getAddressRequest">
+  <part name="parameters" element="tns:RemoteMarket.getAddress" /></message>
+<message name="RemoteMarket.getAddressResponse">
+  <part name="parameters" element="tns:RemoteMarket.getAddressResponse" /></message>
+<message name="RemoteMarket.deleteAddressRequest">
+  <part name="parameters" element="tns:RemoteMarket.deleteAddress" /></message>
+<message name="RemoteMarket.deleteAddressResponse">
+  <part name="parameters" element="tns:RemoteMarket.deleteAddressResponse" /></message>
+<message name="RemoteMarket.getAddressesIdsRequest">
+  <part name="parameters" element="tns:RemoteMarket.getAddressesIds" /></message>
+<message name="RemoteMarket.getAddressesIdsResponse">
+  <part name="parameters" element="tns:RemoteMarket.getAddressesIdsResponse" /></message>
+<message name="RemoteMarket.getAddressIdByOkatoRequest">
+  <part name="parameters" element="tns:RemoteMarket.getAddressIdByOkato" /></message>
+<message name="RemoteMarket.getAddressIdByOkatoResponse">
+  <part name="parameters" element="tns:RemoteMarket.getAddressIdByOkatoResponse" /></message>
+<message name="RemoteMarket.findFirmRequest">
+  <part name="parameters" element="tns:RemoteMarket.findFirm" /></message>
+<message name="RemoteMarket.findFirmResponse">
+  <part name="parameters" element="tns:RemoteMarket.findFirmResponse" /></message>
+<message name="RemoteMarket.findFirmTendersRequest">
+  <part name="parameters" element="tns:RemoteMarket.findFirmTenders" /></message>
+<message name="RemoteMarket.findFirmTendersResponse">
+  <part name="parameters" element="tns:RemoteMarket.findFirmTendersResponse" /></message>
+<message name="RemoteMarket.getFirmClassifierRequest">
+  <part name="parameters" element="tns:RemoteMarket.getFirmClassifier" /></message>
+<message name="RemoteMarket.getFirmClassifierResponse">
+  <part name="parameters" element="tns:RemoteMarket.getFirmClassifierResponse" /></message>
+<message name="RemoteMarket.getModifiedPurchasesRequest">
+  <part name="parameters" element="tns:RemoteMarket.getModifiedPurchases" /></message>
+<message name="RemoteMarket.getModifiedPurchasesResponse">
+  <part name="parameters" element="tns:RemoteMarket.getModifiedPurchasesResponse" /></message>
+<message name="RemoteMarket.getModifiedPurchases223fzRequest">
+  <part name="parameters" element="tns:RemoteMarket.getModifiedPurchases223fz" /></message>
+<message name="RemoteMarket.getModifiedPurchases223fzResponse">
+  <part name="parameters" element="tns:RemoteMarket.getModifiedPurchases223fzResponse" /></message>
+<message name="RemoteTender.createRequest">
+  <part name="parameters" element="tns:RemoteTender.create" /></message>
+<message name="RemoteTender.createResponse">
+  <part name="parameters" element="tns:RemoteTender.createResponse" /></message>
+<message name="RemoteTender.updateRequest">
+  <part name="parameters" element="tns:RemoteTender.update" /></message>
+<message name="RemoteTender.updateResponse">
+  <part name="parameters" element="tns:RemoteTender.updateResponse" /></message>
+<message name="RemoteTender.getDataRequest">
+  <part name="parameters" element="tns:RemoteTender.getData" /></message>
+<message name="RemoteTender.getDataResponse">
+  <part name="parameters" element="tns:RemoteTender.getDataResponse" /></message>
+<message name="RemoteTender.startRequest">
+  <part name="parameters" element="tns:RemoteTender.start" /></message>
+<message name="RemoteTender.startResponse">
+  <part name="parameters" element="tns:RemoteTender.startResponse" /></message>
+<message name="RemoteTender.uploadDocRequest">
+  <part name="parameters" element="tns:RemoteTender.uploadDoc" /></message>
+<message name="RemoteTender.uploadDocResponse">
+  <part name="parameters" element="tns:RemoteTender.uploadDocResponse" /></message>
+<message name="RemoteTender.uploadDocsRequest">
+  <part name="parameters" element="tns:RemoteTender.uploadDocs" /></message>
+<message name="RemoteTender.uploadDocsResponse">
+  <part name="parameters" element="tns:RemoteTender.uploadDocsResponse" /></message>
+<message name="RemoteTender.getParticipantsRequest">
+  <part name="parameters" element="tns:RemoteTender.getParticipants" /></message>
+<message name="RemoteTender.getParticipantsResponse">
+  <part name="parameters" element="tns:RemoteTender.getParticipantsResponse" /></message>
+<message name="RemoteTender.getOfferRequest">
+  <part name="parameters" element="tns:RemoteTender.getOffer" /></message>
+<message name="RemoteTender.getOfferResponse">
+  <part name="parameters" element="tns:RemoteTender.getOfferResponse" /></message>
+<message name="RemoteTender.getLotResultRequest">
+  <part name="parameters" element="tns:RemoteTender.getLotResult" /></message>
+<message name="RemoteTender.getLotResultResponse">
+  <part name="parameters" element="tns:RemoteTender.getLotResultResponse" /></message>
+<message name="RemoteTender.setUnsealingProtocolRequest">
+  <part name="parameters" element="tns:RemoteTender.setUnsealingProtocol" /></message>
+<message name="RemoteTender.setUnsealingProtocolResponse">
+  <part name="parameters" element="tns:RemoteTender.setUnsealingProtocolResponse" /></message>
+<message name="RemoteTender.setProtocolRequest">
+  <part name="parameters" element="tns:RemoteTender.setProtocol" /></message>
+<message name="RemoteTender.setProtocolResponse">
+  <part name="parameters" element="tns:RemoteTender.setProtocolResponse" /></message>
+<message name="RemoteTender.getProtocolRequest">
+  <part name="parameters" element="tns:RemoteTender.getProtocol" /></message>
+<message name="RemoteTender.getProtocolResponse">
+  <part name="parameters" element="tns:RemoteTender.getProtocolResponse" /></message>
+<message name="RemoteTender.sendProtocolRequest">
+  <part name="parameters" element="tns:RemoteTender.sendProtocol" /></message>
+<message name="RemoteTender.sendProtocolResponse">
+  <part name="parameters" element="tns:RemoteTender.sendProtocolResponse" /></message>
+<message name="RemoteTender.deleteRequest">
+  <part name="parameters" element="tns:RemoteTender.delete" /></message>
+<message name="RemoteTender.deleteResponse">
+  <part name="parameters" element="tns:RemoteTender.deleteResponse" /></message>
+<message name="RemoteTender.getDocRequest">
+  <part name="parameters" element="tns:RemoteTender.getDoc" /></message>
+<message name="RemoteTender.getDocResponse">
+  <part name="parameters" element="tns:RemoteTender.getDocResponse" /></message>
+<message name="RemoteTender.getDocAsFileRequest">
+  <part name="parameters" element="tns:RemoteTender.getDocAsFile" /></message>
+<message name="RemoteTender.getDocAsFileResponse">
+  <part name="parameters" element="tns:RemoteTender.getDocAsFileResponse" /></message>
+<message name="RemoteTender.signRequest">
+  <part name="parameters" element="tns:RemoteTender.sign" /></message>
+<message name="RemoteTender.signResponse">
+  <part name="parameters" element="tns:RemoteTender.signResponse" /></message>
+<message name="RemoteTender.getIdsRequest">
+  <part name="parameters" element="tns:RemoteTender.getIds" /></message>
+<message name="RemoteTender.getIdsResponse">
+  <part name="parameters" element="tns:RemoteTender.getIdsResponse" /></message>
+<message name="RemoteTender.getHagglingStatusRequest">
+  <part name="parameters" element="tns:RemoteTender.getHagglingStatus" /></message>
+<message name="RemoteTender.getHagglingStatusResponse">
+  <part name="parameters" element="tns:RemoteTender.getHagglingStatusResponse" /></message>
+<message name="RemoteTender.getHagglingFileRequest">
+  <part name="parameters" element="tns:RemoteTender.getHagglingFile" /></message>
+<message name="RemoteTender.getHagglingFileResponse">
+  <part name="parameters" element="tns:RemoteTender.getHagglingFileResponse" /></message>
+<message name="RemoteTender.createExplanationRequest">
+  <part name="parameters" element="tns:RemoteTender.createExplanation" /></message>
+<message name="RemoteTender.createExplanationResponse">
+  <part name="parameters" element="tns:RemoteTender.createExplanationResponse" /></message>
+<message name="RemoteTender.getListExplanationRequest">
+  <part name="parameters" element="tns:RemoteTender.getListExplanation" /></message>
+<message name="RemoteTender.getListExplanationResponse">
+  <part name="parameters" element="tns:RemoteTender.getListExplanationResponse" /></message>
+<message name="RemoteTender.answerExplanationRequest">
+  <part name="parameters" element="tns:RemoteTender.answerExplanation" /></message>
+<message name="RemoteTender.answerExplanationResponse">
+  <part name="parameters" element="tns:RemoteTender.answerExplanationResponse" /></message>
+<message name="RemoteTender.getLotsStatusRequest">
+  <part name="parameters" element="tns:RemoteTender.getLotsStatus" /></message>
+<message name="RemoteTender.getLotsStatusResponse">
+  <part name="parameters" element="tns:RemoteTender.getLotsStatusResponse" /></message>
+<message name="RemoteTender.getWorksheetsRequest">
+  <part name="parameters" element="tns:RemoteTender.getWorksheets" /></message>
+<message name="RemoteTender.getWorksheetsResponse">
+  <part name="parameters" element="tns:RemoteTender.getWorksheetsResponse" /></message>
+<message name="RemoteTender.getCancelDataRequest">
+  <part name="parameters" element="tns:RemoteTender.getCancelData" /></message>
+<message name="RemoteTender.getCancelDataResponse">
+  <part name="parameters" element="tns:RemoteTender.getCancelDataResponse" /></message>
+<message name="RemoteTender.getPublicationDateRequest">
+  <part name="parameters" element="tns:RemoteTender.getPublicationDate" /></message>
+<message name="RemoteTender.getPublicationDateResponse">
+  <part name="parameters" element="tns:RemoteTender.getPublicationDateResponse" /></message>
+<message name="RemoteTender.getRegisteredFirmsRequest">
+  <part name="parameters" element="tns:RemoteTender.getRegisteredFirms" /></message>
+<message name="RemoteTender.getRegisteredFirmsResponse">
+  <part name="parameters" element="tns:RemoteTender.getRegisteredFirmsResponse" /></message>
+<message name="RemoteAuction.createRequest">
+  <part name="parameters" element="tns:RemoteAuction.create" /></message>
+<message name="RemoteAuction.createResponse">
+  <part name="parameters" element="tns:RemoteAuction.createResponse" /></message>
+<message name="RemoteAuction.updateRequest">
+  <part name="parameters" element="tns:RemoteAuction.update" /></message>
+<message name="RemoteAuction.updateResponse">
+  <part name="parameters" element="tns:RemoteAuction.updateResponse" /></message>
+<message name="RemoteAuction.setPositionsRequest">
+  <part name="parameters" element="tns:RemoteAuction.setPositions" /></message>
+<message name="RemoteAuction.setPositionsResponse">
+  <part name="parameters" element="tns:RemoteAuction.setPositionsResponse" /></message>
+<message name="RemoteAuction.setPositionGroupsRequest">
+  <part name="parameters" element="tns:RemoteAuction.setPositionGroups" /></message>
+<message name="RemoteAuction.setPositionGroupsResponse">
+  <part name="parameters" element="tns:RemoteAuction.setPositionGroupsResponse" /></message>
+<message name="RemoteAuction.clearPositionsRequest">
+  <part name="parameters" element="tns:RemoteAuction.clearPositions" /></message>
+<message name="RemoteAuction.clearPositionsResponse">
+  <part name="parameters" element="tns:RemoteAuction.clearPositionsResponse" /></message>
+<message name="RemoteAuction.setOffersFieldsRequest">
+  <part name="parameters" element="tns:RemoteAuction.setOffersFields" /></message>
+<message name="RemoteAuction.setOffersFieldsResponse">
+  <part name="parameters" element="tns:RemoteAuction.setOffersFieldsResponse" /></message>
+<message name="RemoteAuction.addOffersFieldsRequest">
+  <part name="parameters" element="tns:RemoteAuction.addOffersFields" /></message>
+<message name="RemoteAuction.addOffersFieldsResponse">
+  <part name="parameters" element="tns:RemoteAuction.addOffersFieldsResponse" /></message>
+<message name="RemoteAuction.clearOffersFieldsRequest">
+  <part name="parameters" element="tns:RemoteAuction.clearOffersFields" /></message>
+<message name="RemoteAuction.clearOffersFieldsResponse">
+  <part name="parameters" element="tns:RemoteAuction.clearOffersFieldsResponse" /></message>
+<message name="RemoteAuction.getDataRequest">
+  <part name="parameters" element="tns:RemoteAuction.getData" /></message>
+<message name="RemoteAuction.getDataResponse">
+  <part name="parameters" element="tns:RemoteAuction.getDataResponse" /></message>
+<message name="RemoteAuction.deleteRequest">
+  <part name="parameters" element="tns:RemoteAuction.delete" /></message>
+<message name="RemoteAuction.deleteResponse">
+  <part name="parameters" element="tns:RemoteAuction.deleteResponse" /></message>
+<message name="RemoteAuction.publishRequest">
+  <part name="parameters" element="tns:RemoteAuction.publish" /></message>
+<message name="RemoteAuction.publishResponse">
+  <part name="parameters" element="tns:RemoteAuction.publishResponse" /></message>
+<message name="RemoteAuction.uploadDocRequest">
+  <part name="parameters" element="tns:RemoteAuction.uploadDoc" /></message>
+<message name="RemoteAuction.uploadDocResponse">
+  <part name="parameters" element="tns:RemoteAuction.uploadDocResponse" /></message>
+<message name="RemoteAuction.uploadDocsRequest">
+  <part name="parameters" element="tns:RemoteAuction.uploadDocs" /></message>
+<message name="RemoteAuction.uploadDocsResponse">
+  <part name="parameters" element="tns:RemoteAuction.uploadDocsResponse" /></message>
+<message name="RemoteAuction.getParticipantsRequest">
+  <part name="parameters" element="tns:RemoteAuction.getParticipants" /></message>
+<message name="RemoteAuction.getParticipantsResponse">
+  <part name="parameters" element="tns:RemoteAuction.getParticipantsResponse" /></message>
+<message name="RemoteAuction.getOfferRequest">
+  <part name="parameters" element="tns:RemoteAuction.getOffer" /></message>
+<message name="RemoteAuction.getOfferResponse">
+  <part name="parameters" element="tns:RemoteAuction.getOfferResponse" /></message>
+<message name="RemoteAuction.getOffersHistoryRequest">
+  <part name="parameters" element="tns:RemoteAuction.getOffersHistory" /></message>
+<message name="RemoteAuction.getOffersHistoryResponse">
+  <part name="parameters" element="tns:RemoteAuction.getOffersHistoryResponse" /></message>
+<message name="RemoteAuction.getBetRequest">
+  <part name="parameters" element="tns:RemoteAuction.getBet" /></message>
+<message name="RemoteAuction.getBetResponse">
+  <part name="parameters" element="tns:RemoteAuction.getBetResponse" /></message>
+<message name="RemoteAuction.getIdsRequest">
+  <part name="parameters" element="tns:RemoteAuction.getIds" /></message>
+<message name="RemoteAuction.getIdsResponse">
+  <part name="parameters" element="tns:RemoteAuction.getIdsResponse" /></message>
+<message name="RemoteAuction.getDocRequest">
+  <part name="parameters" element="tns:RemoteAuction.getDoc" /></message>
+<message name="RemoteAuction.getDocResponse">
+  <part name="parameters" element="tns:RemoteAuction.getDocResponse" /></message>
+<message name="RemoteAuction.getDocAsFileRequest">
+  <part name="parameters" element="tns:RemoteAuction.getDocAsFile" /></message>
+<message name="RemoteAuction.getDocAsFileResponse">
+  <part name="parameters" element="tns:RemoteAuction.getDocAsFileResponse" /></message>
+<message name="RemoteAuction.signRequest">
+  <part name="parameters" element="tns:RemoteAuction.sign" /></message>
+<message name="RemoteAuction.signResponse">
+  <part name="parameters" element="tns:RemoteAuction.signResponse" /></message>
+<message name="RemoteAuction.setProtocolRequest">
+  <part name="parameters" element="tns:RemoteAuction.setProtocol" /></message>
+<message name="RemoteAuction.setProtocolResponse">
+  <part name="parameters" element="tns:RemoteAuction.setProtocolResponse" /></message>
+<message name="RemoteAuction.getProtocolRequest">
+  <part name="parameters" element="tns:RemoteAuction.getProtocol" /></message>
+<message name="RemoteAuction.getProtocolResponse">
+  <part name="parameters" element="tns:RemoteAuction.getProtocolResponse" /></message>
+<message name="RemoteAuction.getStatusRequest">
+  <part name="parameters" element="tns:RemoteAuction.getStatus" /></message>
+<message name="RemoteAuction.getStatusResponse">
+  <part name="parameters" element="tns:RemoteAuction.getStatusResponse" /></message>
+<message name="RemoteAuction.findParticipantAuctionsRequest">
+  <part name="parameters" element="tns:RemoteAuction.findParticipantAuctions" /></message>
+<message name="RemoteAuction.findParticipantAuctionsResponse">
+  <part name="parameters" element="tns:RemoteAuction.findParticipantAuctionsResponse" /></message>
+<message name="RemoteAuction.createExplanationRequest">
+  <part name="parameters" element="tns:RemoteAuction.createExplanation" /></message>
+<message name="RemoteAuction.createExplanationResponse">
+  <part name="parameters" element="tns:RemoteAuction.createExplanationResponse" /></message>
+<message name="RemoteAuction.getListExplanationRequest">
+  <part name="parameters" element="tns:RemoteAuction.getListExplanation" /></message>
+<message name="RemoteAuction.getListExplanationResponse">
+  <part name="parameters" element="tns:RemoteAuction.getListExplanationResponse" /></message>
+<message name="RemoteAuction.answerExplanationRequest">
+  <part name="parameters" element="tns:RemoteAuction.answerExplanation" /></message>
+<message name="RemoteAuction.answerExplanationResponse">
+  <part name="parameters" element="tns:RemoteAuction.answerExplanationResponse" /></message>
+<message name="RemoteAuction.setWinnersRequest">
+  <part name="parameters" element="tns:RemoteAuction.setWinners" /></message>
+<message name="RemoteAuction.setWinnersResponse">
+  <part name="parameters" element="tns:RemoteAuction.setWinnersResponse" /></message>
+<message name="RemoteAuction.confirmResultsProtocolRequest">
+  <part name="parameters" element="tns:RemoteAuction.confirmResultsProtocol" /></message>
+<message name="RemoteAuction.confirmResultsProtocolResponse">
+  <part name="parameters" element="tns:RemoteAuction.confirmResultsProtocolResponse" /></message>
+<message name="RemoteAuction.getWorksheetsRequest">
+  <part name="parameters" element="tns:RemoteAuction.getWorksheets" /></message>
+<message name="RemoteAuction.getWorksheetsResponse">
+  <part name="parameters" element="tns:RemoteAuction.getWorksheetsResponse" /></message>
+<message name="RemoteAuction.getCancelDataRequest">
+  <part name="parameters" element="tns:RemoteAuction.getCancelData" /></message>
+<message name="RemoteAuction.getCancelDataResponse">
+  <part name="parameters" element="tns:RemoteAuction.getCancelDataResponse" /></message>
+<message name="RemoteAuction.getPublicationDateRequest">
+  <part name="parameters" element="tns:RemoteAuction.getPublicationDate" /></message>
+<message name="RemoteAuction.getPublicationDateResponse">
+  <part name="parameters" element="tns:RemoteAuction.getPublicationDateResponse" /></message>
+<message name="RemoteAuction.getRegisteredFirmsRequest">
+  <part name="parameters" element="tns:RemoteAuction.getRegisteredFirms" /></message>
+<message name="RemoteAuction.getRegisteredFirmsResponse">
+  <part name="parameters" element="tns:RemoteAuction.getRegisteredFirmsResponse" /></message>
+<message name="RemoteGuarantees.getLimitsRequest">
+  <part name="parameters" element="tns:RemoteGuarantees.getLimits" /></message>
+<message name="RemoteGuarantees.getLimitsResponse">
+  <part name="parameters" element="tns:RemoteGuarantees.getLimitsResponse" /></message>
+<message name="RemoteGuarantees.getGuaranteesRequest">
+  <part name="parameters" element="tns:RemoteGuarantees.getGuarantees" /></message>
+<message name="RemoteGuarantees.getGuaranteesResponse">
+  <part name="parameters" element="tns:RemoteGuarantees.getGuaranteesResponse" /></message>
+<message name="RemoteShop.getOrdersRequest">
+  <part name="parameters" element="tns:RemoteShop.getOrders" /></message>
+<message name="RemoteShop.getOrdersResponse">
+  <part name="parameters" element="tns:RemoteShop.getOrdersResponse" /></message>
+<message name="RemoteShop.updateCustomersRequest">
+  <part name="parameters" element="tns:RemoteShop.updateCustomers" /></message>
+<message name="RemoteShop.updateCustomersResponse">
+  <part name="parameters" element="tns:RemoteShop.updateCustomersResponse" /></message>
+<message name="RemoteShop.updateContractsRequest">
+  <part name="parameters" element="tns:RemoteShop.updateContracts" /></message>
+<message name="RemoteShop.updateContractsResponse">
+  <part name="parameters" element="tns:RemoteShop.updateContractsResponse" /></message>
+<message name="RemoteShop.updatePriceListsRequest">
+  <part name="parameters" element="tns:RemoteShop.updatePriceLists" /></message>
+<message name="RemoteShop.updatePriceListsResponse">
+  <part name="parameters" element="tns:RemoteShop.updatePriceListsResponse" /></message>
+<message name="RemoteShop.updateConsigneesRequest">
+  <part name="parameters" element="tns:RemoteShop.updateConsignees" /></message>
+<message name="RemoteShop.updateConsigneesResponse">
+  <part name="parameters" element="tns:RemoteShop.updateConsigneesResponse" /></message>
+<message name="RemoteShop.setOrderStatusRequest">
+  <part name="parameters" element="tns:RemoteShop.setOrderStatus" /></message>
+<message name="RemoteShop.setOrderStatusResponse">
+  <part name="parameters" element="tns:RemoteShop.setOrderStatusResponse" /></message>
+<portType name="wsPortType">
+  <operation name="RemoteMarket.getServices">
+    <input message="tns:RemoteMarket.getServicesRequest"/>
+    <output message="tns:RemoteMarket.getServicesResponse"/>
+  </operation>
+  <operation name="RemoteMarket.getFirmInfo">
+    <input message="tns:RemoteMarket.getFirmInfoRequest"/>
+    <output message="tns:RemoteMarket.getFirmInfoResponse"/>
+  </operation>
+  <operation name="RemoteMarket.getFirmProperties">
+    <input message="tns:RemoteMarket.getFirmPropertiesRequest"/>
+    <output message="tns:RemoteMarket.getFirmPropertiesResponse"/>
+  </operation>
+  <operation name="RemoteMarket.getClassifierRows">
+    <input message="tns:RemoteMarket.getClassifierRowsRequest"/>
+    <output message="tns:RemoteMarket.getClassifierRowsResponse"/>
+  </operation>
+  <operation name="RemoteMarket.getModifiedClassifierRows">
+    <input message="tns:RemoteMarket.getModifiedClassifierRowsRequest"/>
+    <output message="tns:RemoteMarket.getModifiedClassifierRowsResponse"/>
+  </operation>
+  <operation name="RemoteMarket.updateUser">
+    <input message="tns:RemoteMarket.updateUserRequest"/>
+    <output message="tns:RemoteMarket.updateUserResponse"/>
+  </operation>
+  <operation name="RemoteMarket.getUser">
+    <input message="tns:RemoteMarket.getUserRequest"/>
+    <output message="tns:RemoteMarket.getUserResponse"/>
+  </operation>
+  <operation name="RemoteMarket.deleteUser">
+    <input message="tns:RemoteMarket.deleteUserRequest"/>
+    <output message="tns:RemoteMarket.deleteUserResponse"/>
+  </operation>
+  <operation name="RemoteMarket.getUsersIds">
+    <input message="tns:RemoteMarket.getUsersIdsRequest"/>
+    <output message="tns:RemoteMarket.getUsersIdsResponse"/>
+  </operation>
+  <operation name="RemoteMarket.updateDepartment">
+    <input message="tns:RemoteMarket.updateDepartmentRequest"/>
+    <output message="tns:RemoteMarket.updateDepartmentResponse"/>
+  </operation>
+  <operation name="RemoteMarket.getDepartment">
+    <input message="tns:RemoteMarket.getDepartmentRequest"/>
+    <output message="tns:RemoteMarket.getDepartmentResponse"/>
+  </operation>
+  <operation name="RemoteMarket.deleteDepartment">
+    <input message="tns:RemoteMarket.deleteDepartmentRequest"/>
+    <output message="tns:RemoteMarket.deleteDepartmentResponse"/>
+  </operation>
+  <operation name="RemoteMarket.getDepartmentsIds">
+    <input message="tns:RemoteMarket.getDepartmentsIdsRequest"/>
+    <output message="tns:RemoteMarket.getDepartmentsIdsResponse"/>
+  </operation>
+  <operation name="RemoteMarket.getHierarchyFirms">
+    <input message="tns:RemoteMarket.getHierarchyFirmsRequest"/>
+    <output message="tns:RemoteMarket.getHierarchyFirmsResponse"/>
+  </operation>
+  <operation name="RemoteMarket.updateAddress">
+    <input message="tns:RemoteMarket.updateAddressRequest"/>
+    <output message="tns:RemoteMarket.updateAddressResponse"/>
+  </operation>
+  <operation name="RemoteMarket.getAddress">
+    <input message="tns:RemoteMarket.getAddressRequest"/>
+    <output message="tns:RemoteMarket.getAddressResponse"/>
+  </operation>
+  <operation name="RemoteMarket.deleteAddress">
+    <input message="tns:RemoteMarket.deleteAddressRequest"/>
+    <output message="tns:RemoteMarket.deleteAddressResponse"/>
+  </operation>
+  <operation name="RemoteMarket.getAddressesIds">
+    <input message="tns:RemoteMarket.getAddressesIdsRequest"/>
+    <output message="tns:RemoteMarket.getAddressesIdsResponse"/>
+  </operation>
+  <operation name="RemoteMarket.getAddressIdByOkato">
+    <input message="tns:RemoteMarket.getAddressIdByOkatoRequest"/>
+    <output message="tns:RemoteMarket.getAddressIdByOkatoResponse"/>
+  </operation>
+  <operation name="RemoteMarket.findFirm">
+    <input message="tns:RemoteMarket.findFirmRequest"/>
+    <output message="tns:RemoteMarket.findFirmResponse"/>
+  </operation>
+  <operation name="RemoteMarket.findFirmTenders">
+    <input message="tns:RemoteMarket.findFirmTendersRequest"/>
+    <output message="tns:RemoteMarket.findFirmTendersResponse"/>
+  </operation>
+  <operation name="RemoteMarket.getFirmClassifier">
+    <input message="tns:RemoteMarket.getFirmClassifierRequest"/>
+    <output message="tns:RemoteMarket.getFirmClassifierResponse"/>
+  </operation>
+  <operation name="RemoteMarket.getModifiedPurchases">
+    <input message="tns:RemoteMarket.getModifiedPurchasesRequest"/>
+    <output message="tns:RemoteMarket.getModifiedPurchasesResponse"/>
+  </operation>
+  <operation name="RemoteMarket.getModifiedPurchases223fz">
+    <input message="tns:RemoteMarket.getModifiedPurchases223fzRequest"/>
+    <output message="tns:RemoteMarket.getModifiedPurchases223fzResponse"/>
+  </operation>
+  <operation name="RemoteTender.create">
+    <input message="tns:RemoteTender.createRequest"/>
+    <output message="tns:RemoteTender.createResponse"/>
+  </operation>
+  <operation name="RemoteTender.update">
+    <input message="tns:RemoteTender.updateRequest"/>
+    <output message="tns:RemoteTender.updateResponse"/>
+  </operation>
+  <operation name="RemoteTender.getData">
+    <input message="tns:RemoteTender.getDataRequest"/>
+    <output message="tns:RemoteTender.getDataResponse"/>
+  </operation>
+  <operation name="RemoteTender.start">
+    <input message="tns:RemoteTender.startRequest"/>
+    <output message="tns:RemoteTender.startResponse"/>
+  </operation>
+  <operation name="RemoteTender.uploadDoc">
+    <input message="tns:RemoteTender.uploadDocRequest"/>
+    <output message="tns:RemoteTender.uploadDocResponse"/>
+  </operation>
+  <operation name="RemoteTender.uploadDocs">
+    <input message="tns:RemoteTender.uploadDocsRequest"/>
+    <output message="tns:RemoteTender.uploadDocsResponse"/>
+  </operation>
+  <operation name="RemoteTender.getParticipants">
+    <input message="tns:RemoteTender.getParticipantsRequest"/>
+    <output message="tns:RemoteTender.getParticipantsResponse"/>
+  </operation>
+  <operation name="RemoteTender.getOffer">
+    <input message="tns:RemoteTender.getOfferRequest"/>
+    <output message="tns:RemoteTender.getOfferResponse"/>
+  </operation>
+  <operation name="RemoteTender.getLotResult">
+    <input message="tns:RemoteTender.getLotResultRequest"/>
+    <output message="tns:RemoteTender.getLotResultResponse"/>
+  </operation>
+  <operation name="RemoteTender.setUnsealingProtocol">
+    <input message="tns:RemoteTender.setUnsealingProtocolRequest"/>
+    <output message="tns:RemoteTender.setUnsealingProtocolResponse"/>
+  </operation>
+  <operation name="RemoteTender.setProtocol">
+    <input message="tns:RemoteTender.setProtocolRequest"/>
+    <output message="tns:RemoteTender.setProtocolResponse"/>
+  </operation>
+  <operation name="RemoteTender.getProtocol">
+    <input message="tns:RemoteTender.getProtocolRequest"/>
+    <output message="tns:RemoteTender.getProtocolResponse"/>
+  </operation>
+  <operation name="RemoteTender.sendProtocol">
+    <input message="tns:RemoteTender.sendProtocolRequest"/>
+    <output message="tns:RemoteTender.sendProtocolResponse"/>
+  </operation>
+  <operation name="RemoteTender.delete">
+    <input message="tns:RemoteTender.deleteRequest"/>
+    <output message="tns:RemoteTender.deleteResponse"/>
+  </operation>
+  <operation name="RemoteTender.getDoc">
+    <input message="tns:RemoteTender.getDocRequest"/>
+    <output message="tns:RemoteTender.getDocResponse"/>
+  </operation>
+  <operation name="RemoteTender.getDocAsFile">
+    <input message="tns:RemoteTender.getDocAsFileRequest"/>
+    <output message="tns:RemoteTender.getDocAsFileResponse"/>
+  </operation>
+  <operation name="RemoteTender.sign">
+    <input message="tns:RemoteTender.signRequest"/>
+    <output message="tns:RemoteTender.signResponse"/>
+  </operation>
+  <operation name="RemoteTender.getIds">
+    <input message="tns:RemoteTender.getIdsRequest"/>
+    <output message="tns:RemoteTender.getIdsResponse"/>
+  </operation>
+  <operation name="RemoteTender.getHagglingStatus">
+    <input message="tns:RemoteTender.getHagglingStatusRequest"/>
+    <output message="tns:RemoteTender.getHagglingStatusResponse"/>
+  </operation>
+  <operation name="RemoteTender.getHagglingFile">
+    <input message="tns:RemoteTender.getHagglingFileRequest"/>
+    <output message="tns:RemoteTender.getHagglingFileResponse"/>
+  </operation>
+  <operation name="RemoteTender.createExplanation">
+    <input message="tns:RemoteTender.createExplanationRequest"/>
+    <output message="tns:RemoteTender.createExplanationResponse"/>
+  </operation>
+  <operation name="RemoteTender.getListExplanation">
+    <input message="tns:RemoteTender.getListExplanationRequest"/>
+    <output message="tns:RemoteTender.getListExplanationResponse"/>
+  </operation>
+  <operation name="RemoteTender.answerExplanation">
+    <input message="tns:RemoteTender.answerExplanationRequest"/>
+    <output message="tns:RemoteTender.answerExplanationResponse"/>
+  </operation>
+  <operation name="RemoteTender.getLotsStatus">
+    <input message="tns:RemoteTender.getLotsStatusRequest"/>
+    <output message="tns:RemoteTender.getLotsStatusResponse"/>
+  </operation>
+  <operation name="RemoteTender.getWorksheets">
+    <input message="tns:RemoteTender.getWorksheetsRequest"/>
+    <output message="tns:RemoteTender.getWorksheetsResponse"/>
+  </operation>
+  <operation name="RemoteTender.getCancelData">
+    <input message="tns:RemoteTender.getCancelDataRequest"/>
+    <output message="tns:RemoteTender.getCancelDataResponse"/>
+  </operation>
+  <operation name="RemoteTender.getPublicationDate">
+    <input message="tns:RemoteTender.getPublicationDateRequest"/>
+    <output message="tns:RemoteTender.getPublicationDateResponse"/>
+  </operation>
+  <operation name="RemoteTender.getRegisteredFirms">
+    <input message="tns:RemoteTender.getRegisteredFirmsRequest"/>
+    <output message="tns:RemoteTender.getRegisteredFirmsResponse"/>
+  </operation>
+  <operation name="RemoteAuction.create">
+    <input message="tns:RemoteAuction.createRequest"/>
+    <output message="tns:RemoteAuction.createResponse"/>
+  </operation>
+  <operation name="RemoteAuction.update">
+    <input message="tns:RemoteAuction.updateRequest"/>
+    <output message="tns:RemoteAuction.updateResponse"/>
+  </operation>
+  <operation name="RemoteAuction.setPositions">
+    <input message="tns:RemoteAuction.setPositionsRequest"/>
+    <output message="tns:RemoteAuction.setPositionsResponse"/>
+  </operation>
+  <operation name="RemoteAuction.setPositionGroups">
+    <input message="tns:RemoteAuction.setPositionGroupsRequest"/>
+    <output message="tns:RemoteAuction.setPositionGroupsResponse"/>
+  </operation>
+  <operation name="RemoteAuction.clearPositions">
+    <input message="tns:RemoteAuction.clearPositionsRequest"/>
+    <output message="tns:RemoteAuction.clearPositionsResponse"/>
+  </operation>
+  <operation name="RemoteAuction.setOffersFields">
+    <input message="tns:RemoteAuction.setOffersFieldsRequest"/>
+    <output message="tns:RemoteAuction.setOffersFieldsResponse"/>
+  </operation>
+  <operation name="RemoteAuction.addOffersFields">
+    <input message="tns:RemoteAuction.addOffersFieldsRequest"/>
+    <output message="tns:RemoteAuction.addOffersFieldsResponse"/>
+  </operation>
+  <operation name="RemoteAuction.clearOffersFields">
+    <input message="tns:RemoteAuction.clearOffersFieldsRequest"/>
+    <output message="tns:RemoteAuction.clearOffersFieldsResponse"/>
+  </operation>
+  <operation name="RemoteAuction.getData">
+    <input message="tns:RemoteAuction.getDataRequest"/>
+    <output message="tns:RemoteAuction.getDataResponse"/>
+  </operation>
+  <operation name="RemoteAuction.delete">
+    <input message="tns:RemoteAuction.deleteRequest"/>
+    <output message="tns:RemoteAuction.deleteResponse"/>
+  </operation>
+  <operation name="RemoteAuction.publish">
+    <input message="tns:RemoteAuction.publishRequest"/>
+    <output message="tns:RemoteAuction.publishResponse"/>
+  </operation>
+  <operation name="RemoteAuction.uploadDoc">
+    <input message="tns:RemoteAuction.uploadDocRequest"/>
+    <output message="tns:RemoteAuction.uploadDocResponse"/>
+  </operation>
+  <operation name="RemoteAuction.uploadDocs">
+    <input message="tns:RemoteAuction.uploadDocsRequest"/>
+    <output message="tns:RemoteAuction.uploadDocsResponse"/>
+  </operation>
+  <operation name="RemoteAuction.getParticipants">
+    <input message="tns:RemoteAuction.getParticipantsRequest"/>
+    <output message="tns:RemoteAuction.getParticipantsResponse"/>
+  </operation>
+  <operation name="RemoteAuction.getOffer">
+    <input message="tns:RemoteAuction.getOfferRequest"/>
+    <output message="tns:RemoteAuction.getOfferResponse"/>
+  </operation>
+  <operation name="RemoteAuction.getOffersHistory">
+    <input message="tns:RemoteAuction.getOffersHistoryRequest"/>
+    <output message="tns:RemoteAuction.getOffersHistoryResponse"/>
+  </operation>
+  <operation name="RemoteAuction.getBet">
+    <input message="tns:RemoteAuction.getBetRequest"/>
+    <output message="tns:RemoteAuction.getBetResponse"/>
+  </operation>
+  <operation name="RemoteAuction.getIds">
+    <input message="tns:RemoteAuction.getIdsRequest"/>
+    <output message="tns:RemoteAuction.getIdsResponse"/>
+  </operation>
+  <operation name="RemoteAuction.getDoc">
+    <input message="tns:RemoteAuction.getDocRequest"/>
+    <output message="tns:RemoteAuction.getDocResponse"/>
+  </operation>
+  <operation name="RemoteAuction.getDocAsFile">
+    <input message="tns:RemoteAuction.getDocAsFileRequest"/>
+    <output message="tns:RemoteAuction.getDocAsFileResponse"/>
+  </operation>
+  <operation name="RemoteAuction.sign">
+    <input message="tns:RemoteAuction.signRequest"/>
+    <output message="tns:RemoteAuction.signResponse"/>
+  </operation>
+  <operation name="RemoteAuction.setProtocol">
+    <input message="tns:RemoteAuction.setProtocolRequest"/>
+    <output message="tns:RemoteAuction.setProtocolResponse"/>
+  </operation>
+  <operation name="RemoteAuction.getProtocol">
+    <input message="tns:RemoteAuction.getProtocolRequest"/>
+    <output message="tns:RemoteAuction.getProtocolResponse"/>
+  </operation>
+  <operation name="RemoteAuction.getStatus">
+    <input message="tns:RemoteAuction.getStatusRequest"/>
+    <output message="tns:RemoteAuction.getStatusResponse"/>
+  </operation>
+  <operation name="RemoteAuction.findParticipantAuctions">
+    <input message="tns:RemoteAuction.findParticipantAuctionsRequest"/>
+    <output message="tns:RemoteAuction.findParticipantAuctionsResponse"/>
+  </operation>
+  <operation name="RemoteAuction.createExplanation">
+    <input message="tns:RemoteAuction.createExplanationRequest"/>
+    <output message="tns:RemoteAuction.createExplanationResponse"/>
+  </operation>
+  <operation name="RemoteAuction.getListExplanation">
+    <input message="tns:RemoteAuction.getListExplanationRequest"/>
+    <output message="tns:RemoteAuction.getListExplanationResponse"/>
+  </operation>
+  <operation name="RemoteAuction.answerExplanation">
+    <input message="tns:RemoteAuction.answerExplanationRequest"/>
+    <output message="tns:RemoteAuction.answerExplanationResponse"/>
+  </operation>
+  <operation name="RemoteAuction.setWinners">
+    <input message="tns:RemoteAuction.setWinnersRequest"/>
+    <output message="tns:RemoteAuction.setWinnersResponse"/>
+  </operation>
+  <operation name="RemoteAuction.confirmResultsProtocol">
+    <input message="tns:RemoteAuction.confirmResultsProtocolRequest"/>
+    <output message="tns:RemoteAuction.confirmResultsProtocolResponse"/>
+  </operation>
+  <operation name="RemoteAuction.getWorksheets">
+    <input message="tns:RemoteAuction.getWorksheetsRequest"/>
+    <output message="tns:RemoteAuction.getWorksheetsResponse"/>
+  </operation>
+  <operation name="RemoteAuction.getCancelData">
+    <input message="tns:RemoteAuction.getCancelDataRequest"/>
+    <output message="tns:RemoteAuction.getCancelDataResponse"/>
+  </operation>
+  <operation name="RemoteAuction.getPublicationDate">
+    <input message="tns:RemoteAuction.getPublicationDateRequest"/>
+    <output message="tns:RemoteAuction.getPublicationDateResponse"/>
+  </operation>
+  <operation name="RemoteAuction.getRegisteredFirms">
+    <input message="tns:RemoteAuction.getRegisteredFirmsRequest"/>
+    <output message="tns:RemoteAuction.getRegisteredFirmsResponse"/>
+  </operation>
+  <operation name="RemoteGuarantees.getLimits">
+    <input message="tns:RemoteGuarantees.getLimitsRequest"/>
+    <output message="tns:RemoteGuarantees.getLimitsResponse"/>
+  </operation>
+  <operation name="RemoteGuarantees.getGuarantees">
+    <input message="tns:RemoteGuarantees.getGuaranteesRequest"/>
+    <output message="tns:RemoteGuarantees.getGuaranteesResponse"/>
+  </operation>
+  <operation name="RemoteShop.getOrders">
+    <input message="tns:RemoteShop.getOrdersRequest"/>
+    <output message="tns:RemoteShop.getOrdersResponse"/>
+  </operation>
+  <operation name="RemoteShop.updateCustomers">
+    <input message="tns:RemoteShop.updateCustomersRequest"/>
+    <output message="tns:RemoteShop.updateCustomersResponse"/>
+  </operation>
+  <operation name="RemoteShop.updateContracts">
+    <input message="tns:RemoteShop.updateContractsRequest"/>
+    <output message="tns:RemoteShop.updateContractsResponse"/>
+  </operation>
+  <operation name="RemoteShop.updatePriceLists">
+    <input message="tns:RemoteShop.updatePriceListsRequest"/>
+    <output message="tns:RemoteShop.updatePriceListsResponse"/>
+  </operation>
+  <operation name="RemoteShop.updateConsignees">
+    <input message="tns:RemoteShop.updateConsigneesRequest"/>
+    <output message="tns:RemoteShop.updateConsigneesResponse"/>
+  </operation>
+  <operation name="RemoteShop.setOrderStatus">
+    <input message="tns:RemoteShop.setOrderStatusRequest"/>
+    <output message="tns:RemoteShop.setOrderStatusResponse"/>
+  </operation>
+</portType>
+<binding name="wsBinding" type="tns:wsPortType">
+  <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+  <operation name="RemoteMarket.getServices">
+    <soap:operation soapAction="urn:ws#getServices" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteMarket.getFirmInfo">
+    <soap:operation soapAction="urn:ws#getFirmInfo" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteMarket.getFirmProperties">
+    <soap:operation soapAction="urn:ws#getFirmProperties" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteMarket.getClassifierRows">
+    <soap:operation soapAction="urn:ws#getClassifierRows" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteMarket.getModifiedClassifierRows">
+    <soap:operation soapAction="urn:ws#getModifiedClassifierRows" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteMarket.updateUser">
+    <soap:operation soapAction="urn:ws#updateUser" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteMarket.getUser">
+    <soap:operation soapAction="urn:ws#getUser" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteMarket.deleteUser">
+    <soap:operation soapAction="urn:ws#deleteUser" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteMarket.getUsersIds">
+    <soap:operation soapAction="urn:ws#getUsersIds" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteMarket.updateDepartment">
+    <soap:operation soapAction="urn:ws#updateDepartment" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteMarket.getDepartment">
+    <soap:operation soapAction="urn:ws#getDepartment" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteMarket.deleteDepartment">
+    <soap:operation soapAction="urn:ws#deleteDepartment" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteMarket.getDepartmentsIds">
+    <soap:operation soapAction="urn:ws#getDepartmentsIds" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteMarket.getHierarchyFirms">
+    <soap:operation soapAction="urn:ws#getHierarchyFirms" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteMarket.updateAddress">
+    <soap:operation soapAction="urn:ws#updateAddress" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteMarket.getAddress">
+    <soap:operation soapAction="urn:ws#getAddress" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteMarket.deleteAddress">
+    <soap:operation soapAction="urn:ws#deleteAddress" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteMarket.getAddressesIds">
+    <soap:operation soapAction="urn:ws#getAddressesIds" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteMarket.getAddressIdByOkato">
+    <soap:operation soapAction="urn:ws#getAddressIdByOkato" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteMarket.findFirm">
+    <soap:operation soapAction="urn:ws#findFirm" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteMarket.findFirmTenders">
+    <soap:operation soapAction="urn:ws#findFirmTenders" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteMarket.getFirmClassifier">
+    <soap:operation soapAction="urn:ws#getFirmClassifier" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteMarket.getModifiedPurchases">
+    <soap:operation soapAction="urn:ws#getModifiedPurchases" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteMarket.getModifiedPurchases223fz">
+    <soap:operation soapAction="urn:ws#getModifiedPurchases223fz" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteTender.create">
+    <soap:operation soapAction="urn:ws#create" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteTender.update">
+    <soap:operation soapAction="urn:ws#update" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteTender.getData">
+    <soap:operation soapAction="urn:ws#getData" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteTender.start">
+    <soap:operation soapAction="urn:ws#start" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteTender.uploadDoc">
+    <soap:operation soapAction="urn:ws#uploadDoc" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteTender.uploadDocs">
+    <soap:operation soapAction="urn:ws#uploadDocs" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteTender.getParticipants">
+    <soap:operation soapAction="urn:ws#getParticipants" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteTender.getOffer">
+    <soap:operation soapAction="urn:ws#getOffer" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteTender.getLotResult">
+    <soap:operation soapAction="urn:ws#getLotResult" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteTender.setUnsealingProtocol">
+    <soap:operation soapAction="urn:ws#setUnsealingProtocol" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteTender.setProtocol">
+    <soap:operation soapAction="urn:ws#setProtocol" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteTender.getProtocol">
+    <soap:operation soapAction="urn:ws#getProtocol" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteTender.sendProtocol">
+    <soap:operation soapAction="urn:ws#sendProtocol" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteTender.delete">
+    <soap:operation soapAction="urn:ws#delete" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteTender.getDoc">
+    <soap:operation soapAction="urn:ws#getDoc" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteTender.getDocAsFile">
+    <soap:operation soapAction="urn:ws#getDocAsFile" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteTender.sign">
+    <soap:operation soapAction="urn:ws#sign" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteTender.getIds">
+    <soap:operation soapAction="urn:ws#getIds" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteTender.getHagglingStatus">
+    <soap:operation soapAction="urn:ws#getHagglingStatus" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteTender.getHagglingFile">
+    <soap:operation soapAction="urn:ws#getHagglingFile" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteTender.createExplanation">
+    <soap:operation soapAction="urn:ws#createExplanation" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteTender.getListExplanation">
+    <soap:operation soapAction="urn:ws#getListExplanation" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteTender.answerExplanation">
+    <soap:operation soapAction="urn:ws#answerExplanation" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteTender.getLotsStatus">
+    <soap:operation soapAction="urn:ws#getLotsStatus" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteTender.getWorksheets">
+    <soap:operation soapAction="urn:ws#getWorksheets" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteTender.getCancelData">
+    <soap:operation soapAction="urn:ws#getCancelData" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteTender.getPublicationDate">
+    <soap:operation soapAction="urn:ws#getPublicationDate" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteTender.getRegisteredFirms">
+    <soap:operation soapAction="urn:ws#getRegisteredFirms" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.create">
+    <soap:operation soapAction="urn:ws#create" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.update">
+    <soap:operation soapAction="urn:ws#update" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.setPositions">
+    <soap:operation soapAction="urn:ws#setPositions" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.setPositionGroups">
+    <soap:operation soapAction="urn:ws#setPositionGroups" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.clearPositions">
+    <soap:operation soapAction="urn:ws#clearPositions" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.setOffersFields">
+    <soap:operation soapAction="urn:ws#setOffersFields" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.addOffersFields">
+    <soap:operation soapAction="urn:ws#addOffersFields" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.clearOffersFields">
+    <soap:operation soapAction="urn:ws#clearOffersFields" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.getData">
+    <soap:operation soapAction="urn:ws#getData" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.delete">
+    <soap:operation soapAction="urn:ws#delete" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.publish">
+    <soap:operation soapAction="urn:ws#publish" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.uploadDoc">
+    <soap:operation soapAction="urn:ws#uploadDoc" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.uploadDocs">
+    <soap:operation soapAction="urn:ws#uploadDocs" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.getParticipants">
+    <soap:operation soapAction="urn:ws#getParticipants" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.getOffer">
+    <soap:operation soapAction="urn:ws#getOffer" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.getOffersHistory">
+    <soap:operation soapAction="urn:ws#getOffersHistory" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.getBet">
+    <soap:operation soapAction="urn:ws#getBet" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.getIds">
+    <soap:operation soapAction="urn:ws#getIds" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.getDoc">
+    <soap:operation soapAction="urn:ws#getDoc" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.getDocAsFile">
+    <soap:operation soapAction="urn:ws#getDocAsFile" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.sign">
+    <soap:operation soapAction="urn:ws#sign" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.setProtocol">
+    <soap:operation soapAction="urn:ws#setProtocol" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.getProtocol">
+    <soap:operation soapAction="urn:ws#getProtocol" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.getStatus">
+    <soap:operation soapAction="urn:ws#getStatus" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.findParticipantAuctions">
+    <soap:operation soapAction="urn:ws#findParticipantAuctions" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.createExplanation">
+    <soap:operation soapAction="urn:ws#createExplanation" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.getListExplanation">
+    <soap:operation soapAction="urn:ws#getListExplanation" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.answerExplanation">
+    <soap:operation soapAction="urn:ws#answerExplanation" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.setWinners">
+    <soap:operation soapAction="urn:ws#setWinners" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.confirmResultsProtocol">
+    <soap:operation soapAction="urn:ws#confirmResultsProtocol" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.getWorksheets">
+    <soap:operation soapAction="urn:ws#getWorksheets" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.getCancelData">
+    <soap:operation soapAction="urn:ws#getCancelData" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.getPublicationDate">
+    <soap:operation soapAction="urn:ws#getPublicationDate" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteAuction.getRegisteredFirms">
+    <soap:operation soapAction="urn:ws#getRegisteredFirms" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteGuarantees.getLimits">
+    <soap:operation soapAction="urn:ws#getLimits" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteGuarantees.getGuarantees">
+    <soap:operation soapAction="urn:ws#getGuarantees" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteShop.getOrders">
+    <soap:operation soapAction="urn:ws#getOrders" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteShop.updateCustomers">
+    <soap:operation soapAction="urn:ws#updateCustomers" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteShop.updateContracts">
+    <soap:operation soapAction="urn:ws#updateContracts" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteShop.updatePriceLists">
+    <soap:operation soapAction="urn:ws#updatePriceLists" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteShop.updateConsignees">
+    <soap:operation soapAction="urn:ws#updateConsignees" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+  <operation name="RemoteShop.setOrderStatus">
+    <soap:operation soapAction="urn:ws#setOrderStatus" style="document"/>
+    <input><soap:body use="literal" namespace="urn:ws"/></input>
+    <output><soap:body use="literal" namespace="urn:ws"/></output>
+  </operation>
+</binding>
+<service name="ws">
+  <port name="wsPort" binding="tns:wsBinding">
+    <soap:address location="http://demo.b2b-center.ru/market/remote.html"/>
+  </port>
+</service>
+</definitions>

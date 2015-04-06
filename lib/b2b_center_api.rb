@@ -1,5 +1,3 @@
 require 'b2b_center_api/version'
-
-module B2bCenterApi
-  # Your code goes here...
-end
+require 'b2b_center_api/settings'
+require 'b2b_center_api/client'

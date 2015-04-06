@@ -1,0 +1,5 @@
+require 'b2b_center_api/web_service/remote'
+require 'b2b_center_api/web_service/remote_auction'
+require 'b2b_center_api/web_service/remote_market'
+require 'b2b_center_api/web_service/remote_tender'
+require 'b2b_center_api/web_service/types'
