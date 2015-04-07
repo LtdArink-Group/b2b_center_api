@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['archakov@gmail.com']
   spec.description   = %q{API for b2b-center.}
   spec.summary       = %q{B2B Center API}
-  spec.homepage      = ''
+  spec.homepage      = 'https://github.com/kodram/b2b_center_api'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files`.split($RS)
