@@ -9,7 +9,8 @@ module B2bCenterApi
           return obj if obj.nil?
           case obj_type
           when :string then obj
-          when :integer then obj.to_s
+          when :integer then obj.to_i
+          when :float then obj.to_f
           when :date then Date.parse(obj)
           when :time then Time.parse(obj)
           when :boolean then to_boolean(obj)

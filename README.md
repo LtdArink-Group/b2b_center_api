@@ -18,7 +18,35 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'b2b_center_api'
+
+B2bCenterApi::Settings.soap_configure(
+  wsdl: 'http://demo.b2b-center.ru/market/remote.html?wsdl',
+  proxy: 'http://login:pass@address:port',
+  env_namespace: 'SOAP-ENV',
+  filters: [:password],
+  pretty_print_xml: true,
+  log: false
+)
+
+B2bCenterApi::Settings.auth_configure(
+  auth: { login: 'login', password: 'pass' }
+)
+
+b2b = B2bCenterApi::Client.new
+
+ps = b2b.remote_auction.get_participants(18_501)
+
+puts 'participants:'
+puts ps
+puts 'offers for first participant:'
+puts ps[0].offers
+```
+
+## Documentation
+
+http://www.rubydoc.info/gems/b2b_center_api
 
 ## Contributing
 

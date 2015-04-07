@@ -34,6 +34,10 @@ module B2bCenterApi
         def remote_tender
           B2bCenterApi::RemoteTender.new(@soap_client)
         end
+
+        def self.to_array(obj)
+          obj.is_a?(Hash) ? [obj] : obj
+        end
       end
     end
   end

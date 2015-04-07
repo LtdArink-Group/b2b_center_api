@@ -3,36 +3,64 @@ require 'b2b_center_api/web_service/types/base'
 module B2bCenterApi
   module WebService
     module Types
+      # Информация об организации
       class FirmInfo < Base
-        attr_accessor :date_lastedit,
-                      :org_name,
-                      :org_name_short,
-                      :code_okpo,
-                      :bank_name,
-                      :bank_inn,
-                      :ogrn,
-                      :ogrn_given,
-                      :ogrn_date_given,
-                      :bank_kpp,
-                      :bank_bik,
-                      :bank_r_account,
-                      :bank_c_account,
-                      :bank_comments,
-                      :jury_address,
-                      :post_address,
-                      :fact_address,
-                      :site_url,
-                      :certification,
-                      :org_details,
-                      :bank_details,
-                      :country,
-                      # :bosses,
-                      :is_smb
+        # @return [Integer] ID организации
+        attr_accessor :firm_id
+        # @return [Time] Дата последнего изменения
+        attr_accessor :date_lastedit
+        # @return [String] Полное наименование организации. Формат значения VARCHAR(255)
+        attr_accessor :org_name
+        # @return [String] Краткое наименование организации. Формат значения VARCHAR(255)
+        attr_accessor :org_name_short
+        # @return [String] Код ОКПО. Формат значения VARCHAR (10)
+        attr_accessor :code_okpo
+        # @return [String] Название банка. Формат значения VARCHAR(255)
+        attr_accessor :bank_name
+        # @return [String] ИНН организации. Формат значения VARCHAR(30)
+        attr_accessor :bank_inn
+        # @return [String] ОГРН. Формат значения VARCHAR(15)
+        attr_accessor :ogrn
+        # @return [String] Кем выдан ОГРН. Формат значения VARCHAR(128)
+        attr_accessor :ogrn_given
+        # @return [Date] Дата выдачи ОГРН. Формат значения dd.mm.YYYY
+        attr_accessor :ogrn_date_given
+        # @return [String] КПП организации. Формат значения VARCHAR(12)
+        attr_accessor :bank_kpp
+        # @return [String] БИК. Формат значения VARCHAR(30)
+        attr_accessor :bank_bik
+        # @return [String] Расчетный счет. Формат значения VARCHAR(30)
+        attr_accessor :bank_r_account
+        # @return [String] Корреспондентский счет. Формат значения VARCHAR(30)
+        attr_accessor :bank_c_account
+        # @return [String] Комментарии к банковским реквизитам. Формат значения VARCHAR(255)
+        attr_accessor :bank_comments
+        # @return [String] Юридический адрес. Формат значения VARCHAR(255)
+        attr_accessor :jury_address
+        # @return [String] Почтовый адрес. Формат значения VARCHAR(255)
+        attr_accessor :post_address
+        # @return [String] Фактический адрес. Формат значения VARCHAR(255)
+        attr_accessor :fact_address
+        # @return [String] Адрес веб-сайта. Формат значения VARCHAR(255)
+        attr_accessor :site_url
+        # @return [String] Информация о сертификации продукции, работ и услуг
+        attr_accessor :certification
+        # @return [String] Регистрационные данные. Поле заполняется только для иностранных организаций.
+        attr_accessor :org_details
+        # @return [String] Банковские реквизиты. Поле заполняется только для иностранных организаций.
+        attr_accessor :bank_details
+        # @return [Integer] Код страны. Пример: код России = 643
+        attr_accessor :country
+        # @return [Boolean] Соответствует ли участник критериям СМП (среднего или малого предпринимательства)
+        attr_accessor :is_smb
 
-        def self.from_response(response, client)
+        # @return [FirmInfo]
+        def self.from_response(response, client, firm_id)
+          return if response.result.nil?
           r = response.result
           fi = FirmInfo.new
           fi.soap_client = client
+          fi.firm_id = firm_id
           fi.date_lastedit = convert(r[:date_lastedit], :time)
           fi.org_name = convert(r[:org_name], :string)
           fi.org_name_short = convert(r[:org_name_short], :string)
@@ -41,7 +69,7 @@ module B2bCenterApi
           fi.bank_inn = convert(r[:bank_inn], :string)
           fi.ogrn = convert(r[:ogrn], :string)
           fi.ogrn_given = convert(r[:ogrn_given], :string)
-          fi.ogrn_date_given = convert(r[:ogrn_date_given], :string)
+          fi.ogrn_date_given = convert(r[:ogrn_date_given], :date)
           fi.bank_kpp = convert(r[:bank_kpp], :string)
           fi.bank_bik = convert(r[:bank_bik], :string)
           fi.bank_r_account = convert(r[:bank_r_account], :string)

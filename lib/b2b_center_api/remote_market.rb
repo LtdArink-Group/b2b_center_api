@@ -8,9 +8,12 @@ module B2bCenterApi
       @client_web = WebService::RemoteMarket.new(client)
     end
 
+    # Получить информацию об организации
+    # @param firm_id [Integer] ID организации
+    # @return [WebService::Types::FirmInfo]
     def get_firm_info(firm_id)
       response = @client_web.command :get_firm_info, firm_id: firm_id
-      WebService::Types::FirmInfo.from_response(response, @client)
+      WebService::Types::FirmInfo.from_response(response, @client, firm_id)
     end
   end
 end

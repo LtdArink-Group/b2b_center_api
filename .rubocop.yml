@@ -6,3 +6,6 @@ PercentLiteralDelimiters:
 
 UnneededPercentQ:
   Enabled: false
+
+LineLength:
+  Max: 119

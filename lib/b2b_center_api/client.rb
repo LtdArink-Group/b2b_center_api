@@ -5,15 +5,20 @@ require 'b2b_center_api/remote_tender'
 require 'savon'
 
 module B2bCenterApi
-  # Soap Client
+  # Client for API
   class Client
-    attr_accessor :remote_auction,
-                  :remote_market,
-                  :remote_tender
+    # Методы класса RemoteAuction
+    # @return [RemoteAuction]
+    attr_accessor :remote_auction
+    # Методы класса RemoteMarket
+    # @return [RemoteMarket]
+    attr_accessor :remote_market
+    # Методы класса RemoteTender
+    # @return [RemoteTender]
+    attr_accessor :remote_tender
 
-    def initialize(options = nil)
-      options ||= Settings.soap_options
-      @client = Savon.client(options)
+    def initialize
+      @client = Savon.client(Settings.soap_options)
       @remote_auction = RemoteAuction.new(@client)
       @remote_market = RemoteMarket.new(@client)
       @remote_tender = RemoteTender.new(@client)
