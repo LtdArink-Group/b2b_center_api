@@ -21,6 +21,15 @@ module B2bCenterApi
           "<#{self.class}: #{vars}>"
         end
 
+        def to_h
+          hash = {}
+          vars = instance_variables
+          NO_INSPECT_ATTRS.each { |a| vars.delete(a) }
+
+          vars.each { |var| hash[var.to_s.delete('@').to_sym] = instance_variable_get(var) }
+          hash
+        end
+
         private
 
         def remote_auction

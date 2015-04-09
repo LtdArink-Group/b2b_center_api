@@ -32,6 +32,9 @@ module B2bCenterApi
           r = response.result
           t = AuctionOffer.new
           t.soap_client = client
+          t.auction_id = auction_id
+          t.firm_id = firm_id
+          t.offer_num = offer_num
           t.final_price = convert(r[:final_price], :float)
           t.final_price_notax = convert(r[:final_price_notax], :float)
           t.final_bet_date = convert(r[:final_bet_date], :time)
