@@ -25,5 +25,14 @@ module B2bCenterApi
       response = @client_web.command :get_offer, tender_id: tender_id, firm_id: firm_id, offer_num: offer_num
       WebService::Types::TenderOffer.from_response(response, @client, tender_id, firm_id, offer_num)
     end
+
+    # Получить результаты обработки лота
+    # @param tender_id [Integer] Номер конкурса
+    # @param lot_id [Integer] Номер лота
+    # @return [WebService::Types::TenderLotResults]
+    def get_lot_result(tender_id, lot_id)
+      response = @client_web.command :get_lot_result, tender_id: tender_id, lot_id: lot_id
+      WebService::Types::TenderLotResults.from_response(response, @client, tender_id, lot_id)
+    end
   end
 end
