@@ -1,10 +1,8 @@
-require 'b2b_center_api/web_service/types/base'
-
 module B2bCenterApi
   module WebService
     module Types
       # Информация об организации
-      class FirmInfo < Base
+      class FirmInfo < WebService::BaseType
         # @return [Integer] ID организации
         attr_accessor :firm_id
         # @return [Time] Дата последнего изменения
@@ -56,8 +54,8 @@ module B2bCenterApi
 
         # @return [FirmInfo]
         def self.from_response(response, client, firm_id)
-          return if response.result.nil?
-          r = response.result
+          r = response.result[:firm_info]
+          return if r.nil?
           fi = FirmInfo.new
           fi.soap_client = client
           fi.firm_id = firm_id

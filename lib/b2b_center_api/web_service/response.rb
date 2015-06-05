@@ -6,8 +6,8 @@ module B2bCenterApi
       def initialize(response)
         @body = response.body
         @ret = @body.values[0][:return]
-        @status = @ret[:status]
-        @result = @ret.values[1]
+        @status = @ret.delete(:status)
+        @result = @ret
       end
     end
   end

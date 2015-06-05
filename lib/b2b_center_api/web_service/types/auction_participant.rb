@@ -1,10 +1,8 @@
-require 'b2b_center_api/web_service/types/base'
-
 module B2bCenterApi
   module WebService
     module Types
       # Участник аукциона
-      class AuctionParticipant < Base
+      class AuctionParticipant < WebService::BaseType
         # @return [Integer] Номер аукциона/объявления
         attr_accessor :auction_id
         # @return [String] ID организации участника, если имена участников доступны,
@@ -18,8 +16,8 @@ module B2bCenterApi
 
         # @return [Array] Массив {AuctionParticipant}
         def self.from_response(response, client, auction_id)
-          return if response.result.nil?
-          r = response.result
+          r = response.result[:participants]
+          return if r.nil?
           mas = to_array(r[:participant]).map do |p|
             ap = AuctionParticipant.new
             ap.soap_client = client

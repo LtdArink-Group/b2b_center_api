@@ -1,10 +1,8 @@
-require 'b2b_center_api/web_service/types/base'
-
 module B2bCenterApi
   module WebService
     module Types
       # Файл
-      class B2bFile < Base
+      class B2bFile < WebService::BaseType
         # @return [String] Наименование файла. Формат значения VARCHAR(255)
         attr_accessor :title
         # @return [String] Описание файла

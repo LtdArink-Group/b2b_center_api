@@ -1,10 +1,8 @@
-require 'b2b_center_api/web_service/types/base'
-
 module B2bCenterApi
   module WebService
     module Types
       # Предложение
-      class AuctionOffer < Base
+      class AuctionOffer < WebService::BaseType
         # @return [Integer] Номер аукциона/объявления
         attr_accessor :auction_id
         # @return [Integer] ID организации (участник торговой процедуры)
@@ -23,13 +21,13 @@ module B2bCenterApi
         attr_accessor :bets
         # Файлы предложения. Поле содержит список записей типа file, в случае если у текущего
         # пользователя нет доступа к файлу, то поле file.name — не заполняется.
-        # @return [B2bCenterApi::WebService::Types::File[]]
+        # @return [B2bCenterApi::WebService::Types::B2bFile[]]
         attr_accessor :files
 
         # @return [AuctionOffer]
         def self.from_response(response, client, auction_id, firm_id, offer_num)
-          return if response.result.nil?
-          r = response.result
+          r = response.result[:auction_offer]
+          return if r.nil?
           t = AuctionOffer.new
           t.soap_client = client
           t.auction_id = auction_id

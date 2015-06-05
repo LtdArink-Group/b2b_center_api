@@ -1,5 +1,3 @@
-require 'b2b_center_api/web_service/types/auction_participant'
-require 'b2b_center_api/web_service/types/firm_info'
-require 'b2b_center_api/web_service/types/auction_offer'
-require 'b2b_center_api/web_service/types/b2b_file'
-require 'b2b_center_api/web_service/types/array_of_ids'
+require 'b2b_center_api/web_service/base_type'
+
+Dir[File.dirname(__FILE__) + '/types/*.rb'].each { |file| require file }
