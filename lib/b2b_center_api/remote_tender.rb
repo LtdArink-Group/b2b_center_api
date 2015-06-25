@@ -8,6 +8,14 @@ module B2bCenterApi
       @client_web = WebService::RemoteTender.new(client)
     end
 
+    # Получить данные конкурса
+    # @param tender_id [Integer] Номер конкурса
+    # @return [WebService::Types::TenderData]
+    def get_data(tender_id)
+      response = @client_web.command :get_data, tender_id: tender_id
+      WebService::Types::TenderData.from_response(response, @client, tender_id)
+    end
+
     # Получить список участников
     # @param tender_id [Integer] Номер конкурса
     # @return [WebService::Types::TenderParticipant[]]
