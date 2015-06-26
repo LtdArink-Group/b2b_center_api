@@ -32,7 +32,7 @@ module B2bCenterApi
           t.tender_id = tender_id
           t.lot_id = lot_id
 
-          t.results = TenderLotResult.from_part_response(r[:results])
+          t.results = TenderLotResult.from_part_response(r[:results], lot_id)
           t.result_status = convert(r[:result_status], :string)
           t.reason = convert(r[:reason], :string)
           t

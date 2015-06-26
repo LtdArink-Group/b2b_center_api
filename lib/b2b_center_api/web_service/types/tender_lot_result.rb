@@ -34,13 +34,16 @@ module B2bCenterApi
         attr_accessor :final_price
         # @return[Float] Итоговая цена без НДС. Формат значения DECIMAL(15,2)
         attr_accessor :final_price_notax
+        # @return[Integer] Номер лота
+        attr_accessor :lot_id
 
         # @return [TenderLotResult[]]
-        def self.from_part_response(response)
+        def self.from_part_response(response, lot_id)
           return if response.nil?
           results = to_array(response[:tender_lot_result]).map do |tlr|
             t = TenderLotResult.new
             t.firm_id = convert(tlr[:firm_id], :integer)
+            t.lot_id = lot_id
             t.alternate_num = convert(tlr[:alternate_num], :integer)
             t.result = convert(tlr[:result], :string)
             t.reason = convert(tlr[:reason], :string)
