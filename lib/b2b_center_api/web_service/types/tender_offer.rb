@@ -27,7 +27,7 @@ module B2bCenterApi
           t.firm_id = firm_id
           t.offer_num = offer_num
           t.files = B2bFile.from_part_response(r[:offer])
-          t.lots = r[:lots].map(&:to_i) unless r[:lots].nil?
+          t.lots = Array(r[:lots]).map(&:to_i) unless r[:lots].nil?
           t.haggling_file_name = convert(r[:haggling_file_name], :string)
           t
         end
