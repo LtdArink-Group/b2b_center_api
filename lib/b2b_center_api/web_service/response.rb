@@ -1,3 +1,5 @@
+require 'b2b_center_api/etp_error'
+
 module B2bCenterApi
   module WebService
     class Response
@@ -7,7 +9,12 @@ module B2bCenterApi
         @body = response.body
         @ret = @body.values[0][:return]
         @status = @ret.delete(:status)
-        @result = @ret
+        if @status[:error_code] == 0
+          @result = @ret
+        else
+          fail B2bCenterApi::EtpError,
+               format('Код ошибки: %s, Сообщение: %s', @status[:error_code], @status[:error_message])
+        end
       end
     end
   end
