@@ -9,7 +9,7 @@ module B2bCenterApi
         @body = response.body
         @ret = @body.values[0][:return]
         @status = @ret.delete(:status)
-        if @status[:error_code] == 0
+        if @status[:error_code] == '0'
           @result = @ret
         else
           fail B2bCenterApi::EtpError,
