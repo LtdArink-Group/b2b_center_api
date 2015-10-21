@@ -46,7 +46,7 @@ module B2bCenterApi
             ap.date_offer = convert(p[:date_offer], :time)
             ap.qualified = convert(p[:qualified], :integer)
             ap.date_qualified = convert(p[:date_qualified], :time)
-            ap.offers_nums = ArrayOfIds.from_part_response(p[:offers_nums]).map(&:to_i)
+            ap.offers_nums = ArrayOfIds.from_part_response(p[:offers_nums]).flatten.map(&:to_i)
             ap
           end
 
