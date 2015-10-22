@@ -8,6 +8,14 @@ module B2bCenterApi
       @client_web = WebService::RemoteAuction.new(client)
     end
 
+    # Получить данные аукциона
+    # @param auction_id [Integer] Номер процедуры
+    # @return [WebService::Types::AuctionData]
+    def get_data(auction_id)
+      response = @client_web.command :get_data, auction_id: auction_id
+      WebService::Types::AuctionData.from_response(response, @client, auction_id)
+    end
+
     # Получить список участников
     # @param auction_id [Integer] Номер аукциона/объявления
     # @return [WebService::Types::AuctionParticipant[]]

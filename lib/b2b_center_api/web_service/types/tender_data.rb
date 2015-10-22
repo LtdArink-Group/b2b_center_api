@@ -188,7 +188,7 @@ module B2bCenterApi
         end
 
         # @return [TenderParticipant[]] Информация об организации
-        def tender_participants
+        def participants
           remote_tender.get_participants(id)
         end
       end

@@ -23,7 +23,7 @@ module B2bCenterApi
             ap.soap_client = client
             ap.auction_id = auction_id
             ap.firm_id = convert(p[:firm_id], :string)
-            ap.offers_nums = ArrayOfIds.from_part_response(p[:offers_nums]).map(&:to_i)
+            ap.offers_nums = ArrayOfIds.from_part_response(p[:offers_nums]).flatten.map(&:to_i)
             ap
           end
 
