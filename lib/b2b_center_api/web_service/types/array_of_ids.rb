@@ -8,6 +8,12 @@ module B2bCenterApi
           return [] if response.nil?
           to_array(response).map { |n| convert(n[:string], :string) }
         end
+
+        def self.from_response(response)
+          r = response.result
+          return if r.nil?
+          r[:ids]
+        end
       end
     end
   end

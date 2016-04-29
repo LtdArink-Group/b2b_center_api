@@ -24,6 +24,14 @@ module B2bCenterApi
       WebService::Types::AuctionParticipant.from_response(response, @client, auction_id)
     end
 
+    # Получить список идентификаторов лотов многолотовой процедуры
+    # @param auction_id [Integer] Номер аукциона/объявления
+    # @return [WebService::Types::ArrayOfIds[]]
+    def get_group_ids(auction_id)
+      response = @client_web.command :get_group_ids, auction_id: auction_id
+      WebService::Types::ArrayOfIds.from_response(response)
+    end
+
     # Получить предложение участника
     # Метод возвращает информацию о предложении (альтернативном предложении) участника:
     # последней ставке, имя файла с описанием предложения, информацию о том признан ли участник победителем.

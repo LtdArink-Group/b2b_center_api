@@ -15,5 +15,13 @@ module B2bCenterApi
       response = @client_web.command :get_firm_info, firm_id: firm_id
       WebService::Types::FirmInfo.from_response(response, @client, firm_id)
     end
+
+    # Получить информацию об организации по инн
+    # @param inn [String] ИНН организации
+    # @return [WebService::Types::FirmData]
+    def find_firm_by_inn(inn)
+      response = @client_web.command :find_firm, firm_request: { inn: inn }
+      WebService::Types::FirmData.from_response(response, @client)
+    end
   end
 end
