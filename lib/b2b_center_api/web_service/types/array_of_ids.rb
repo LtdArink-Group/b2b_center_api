@@ -12,7 +12,7 @@ module B2bCenterApi
         def self.from_response(response)
           r = response.result
           return if r.nil?
-          r[:ids]
+          Array(r[:ids])
         end
       end
     end
