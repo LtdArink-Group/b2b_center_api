@@ -24,13 +24,14 @@ module B2bCenterApi
         #     0 — при однолотовом запросе или первом лоте многолотового
         #    id — Номер многолотового запроса предложений в который необходимо добавить лот
         attr_accessor :auction_id
-        # @return[Integer] Номер лота в многолотовом запросе предложений
+        # @return [Integer] Номер лота в многолотовом запросе предложений
         #   Возможные значения
         #     0 — для создания однолотового запроса предложений
         #     N — для многолотового, где N - порядковый номер лота в многолотовом запросе предложений
         #         (1 для первого в сочетании с auction_id = 0 и больше 1 в сочетании с auction_id = id)
         attr_accessor :number_in_group
         # @return [String]
+        # ID подразделения
         attr_accessor :department_id
         # @return [String] Категории классификоторов
         # Перечисление категорий классификатора через ,
@@ -115,7 +116,7 @@ module B2bCenterApi
         # Список адресов организации возвращает метод RemoteMarket.getAddressesIds.
         attr_accessor :addresses_ids
         # @return [Integer]
-        # =1 — Альтернативные предложения разрешены
+        # 1 — Альтернативные предложения разрешены
         attr_accessor :alternative_offers
         # @return [String] URL торговой процедуры на площадке B2B
         # Поле возвращается при вызове метода RemoteAuction.getData
@@ -260,7 +261,102 @@ module B2bCenterApi
         #     1 — установлено
         attr_accessor :attract_subcontractors_smb
 
-        # @return [AuctionData]
+        # @return [Integer]
+        # Разрешить ли торги за единицу.
+        #   Возможные значения:
+        #     "0" — не разрешать;
+        #     "1" — разрешить
+        attr_accessor :trading_per_unit
+
+        # @return [Integer]
+        # Включить рангирование заявок.
+        #   Возможные значения:
+        #     "0" — не включать;
+        #     "1" — включить
+        attr_accessor :rating_offers_mode
+
+        # @return [RangeFloat]
+        # Диапазон ставок участников в процентах от начальной стоимости лота.
+        # Возможность использования предоставляется оператором, при ее наличии поле обязательно
+        attr_accessor :variable_bet_step
+
+        # @return [BoardProcMinStep] Минимальный шаг.
+        # Указывается в запросах цен/предложений. Возможность указания предоставляется оператором
+        attr_accessor :min_step
+
+        # @return [ProcGkpzData]
+        # Год и номер строки плана, которой соответствует торговая процедура.
+        # Только для процедур по 223-ФЗ
+        attr_accessor :gkpz_fields
+
+        # @return [ArrayOfIds]
+        # Номера ПКО, если требуется провести процедуру по результатам предварительного квалификационного отбора (отборов)
+        attr_accessor :src_qualification_ids
+
+        # @return [AuctionAdditionalTradingField]
+        # Дополнительные поля извещения торговой процедуры.
+        # Возможность их использования предоставляется оператором
+        attr_accessor :additional_trading_fields
+
+        # @return [AuctionLotFieldValue]
+        # Дополнительные поля торговой процедуры (дополнительные поля лотов).
+        # Устанавливаются в личном кабинете или методом RemoteMarket.addLotFields.
+        # Возможность их использования предоставляется оператором
+        attr_accessor :lot_fields
+
+        # @return [String]
+        # Место вскрытия конвертов.
+        # Адрес места, где состоится вскрытие конвертов с конкурсными заявками.
+        # Формат значения: VARCHAR(2048)
+        attr_accessor :unsealing_place
+
+        # @return [String]
+        # Конкурсная комиссия.
+        # Информация о Конкурсной комиссии: порядок ее формирования, ФИО и контактную информацию ответственного секретаря (телефон, факс, адрес электронной почты), ее адрес.
+        # Формат значения: VARCHAR(2048)
+        attr_accessor :committee_info
+
+        # @return [String]
+        # Конкурсная комиссия.
+        # Требования к участникам конкурса, в том числе
+        #   тип и деятельность приглашаемой организации (например, специализированные организации, которые самостоятельно или с привлечением субподрядчиков могут обеспечить выполнение всего объема требуемых работ);
+        #   наличие лицензий, квалификацию персонала, производственно-техническую мощность и имущество участника;
+        #   финансовое положение участника (не должен быть неплатежеспособным, банкротом, не должен находиться в процессе ликвидации, имущество не должно быть под арестом, в залоге и пр.).
+        # Формат значения: VARCHAR(2048)
+        attr_accessor :participants_requirements
+
+        # @return [String] Комплект конкурсной документации.
+        # Место, время и условия получения конкурсной документации.
+        # Формат значения: VARCHAR(2048)
+        attr_accessor :documents_info
+
+        # @return [String] Обеспечение обязательств по договору
+        # Дополнительная информация об обеспечении. Например, правила учета обеспечения, условия и сроки его возврата и пр.
+        # Формат значения: VARCHAR(2048)
+        attr_accessor :applications_deposit
+
+        # @return [String]
+        # Конкурсные заявки
+        # Требования к оформлению конкурсных заявок (на каком языке должна составляться заявка, учитывается ли НДС в ценовом предложении и т.п.).
+        # Формат значения: VARCHAR(2048)
+        attr_accessor :competitive_offers_requirements
+
+        # @return [String]
+        # Дата начала поставки товаров, проведения работ, оказания услуг.
+        # Формат значения: dd.mm.yyyy
+        attr_accessor :date_job_begin
+
+        # @return [String]
+        # Дата окончания поставки товаров, проведения работ, оказания услуг.
+        # Формат значения: dd.mm.yyyy
+        attr_accessor :date_job_end
+
+        # @return [String]
+        # Место подведения итогов.
+        # Формат значения: VARCHAR(2048)
+        attr_accessor :place_summarizing
+
+        # return [AuctionData]
         def self.from_response(response, client, tender_id)
           r = response.result[:data]
           return if r.nil?
@@ -268,18 +364,18 @@ module B2bCenterApi
           t = AuctionData.new
           t.soap_client = client
           t.id = convert(r[:id], :integer)
-          t.type = r[:type]
-          t.board_extended_type = r[:board_extended_type]
-          t.auction_id = r[:auction_id]
-          t.number_in_group = r[:number_in_group]
+          t.type = convert r[:type], :integer
+          t.board_extended_type = convert r[:board_extended_type], :integer
+          t.auction_id = convert r[:auction_id], :integer
+          t.number_in_group = convert r[:number_in_group], :integer
           t.department_id = r[:department_id]
           t.classifier_ids = r[:classifier_ids]
           t.okved_code = r[:okved_code]
           t.name = r[:name]
           t.comments = r[:comments]
-          t.service = r[:service]
+          t.service = convert r[:service], :integer
           t.link_url = r[:link_url]
-          t.quantity = r[:quantity]
+          t.quantity = convert r[:quantity], :float
           t.units = r[:units]
           t.price_unit = r[:price_unit]
           t.price_unit_notax = r[:price_unit_notax]
@@ -329,6 +425,23 @@ module B2bCenterApi
           t.zgr_not_dishonest_firm = r[:zgr_not_dishonest_firm]
           t.only_for_smb = r[:only_for_smb]
           t.attract_subcontractors_smb = r[:attract_subcontractors_smb]
+          t.trading_per_unit = r[:trading_per_unit]
+          t.rating_offers_mode = r[:rating_offers_mode]
+          t.variable_bet_step = r[:variable_bet_step]
+          t.min_step = r[:min_step]
+          t.gkpz_fields = r[:gkpz_fields]
+          t.src_qualification_ids = ArrayOfIds.from_part_response(r[:src_qualification_ids]).flatten
+          t.additional_trading_fields = r[:additional_trading_fields]
+          t.lot_fields = r[:lot_fields]
+          t.unsealing_place = r[:unsealing_place]
+          t.committee_info = r[:committee_info]
+          t.participants_requirements = r[:participants_requirements]
+          t.documents_info = r[:documents_info]
+          t.applications_deposit = r[:applications_deposit]
+          t.competitive_offers_requirements = r[:competitive_offers_requirements]
+          t.date_job_begin = convert(r[:date_job_begin], :date)
+          t.date_job_end = convert r[:date_job_end], :date
+          t.place_summarizing = convert r[:place_summarizing], :date
           t
         end
 
