@@ -38,6 +38,8 @@ module B2bCenterApi
         attr_accessor :classifier_ids
         # @return [String] Код ОКВЭД
         attr_accessor :okved_code
+        # @return [String] Код категории ОКПД2. Для процедур по 223-ФЗ, созданных/редактируемых после 01.01.2016 г
+        attr_accessor :okpd_code
         # @return [String] Наименование продукции
         attr_accessor :name
         # @return [String] Краткое описание лота
@@ -46,6 +48,10 @@ module B2bCenterApi
         # ID услуги - список можно получить вызвав RemoteMarket.getServices()
         # Пустая строка - нет описания
         attr_accessor :service
+        # @return [String] Файл с описанием. ID файла с описанием, загруженного в Личном кабинете в разделе "Описания
+        # предлагаемой продукции и услуг". Если пустая строка — то нет описания.
+        # Формат значения: VARCHAR(16)
+        attr_accessor :product
         # @return [String] Ссылка на подробное описание продукции
         attr_accessor :link_url
         # @return [Double] Количество продукции
@@ -115,8 +121,21 @@ module B2bCenterApi
         # @return [ArrayOfIds] Место поставки товара или оказания услуги.
         # Список адресов организации возвращает метод RemoteMarket.getAddressesIds.
         attr_accessor :addresses_ids
-        # @return [Integer]
-        # 1 — Альтернативные предложения разрешены
+        # @return [Integer] Единый адрес поставки. Можно указывать в совместных закупках.
+        #   Возможные значения
+        #     "0" — Не включать признак. Адреса поставки будут указаны при добавлении заказчиков по лотам процедуры;
+        #     "1" — Включить признак. Адреса поставки будут указаны в извещении
+        attr_accessor :is_common_delivery
+        # @return [Integer] Совместная закупка. Для создания совместной закупки необходимо также включить признаки
+        #   "multiposition", "allow_positions_groups" и "allow_positions_no_price".
+        #   Возможные значения
+        #    "0" — Не включать признак;
+        #    "1" — Включить признак. Будет создана совместная закупка. 
+        attr_accessor :is_joint_purchase
+        # @return [Integer] Разрешена ли подача альтернативных заявок.
+        #   Возможные значения
+        #     0 —  не разрешена;
+        #     1 —  разрешена
         attr_accessor :alternative_offers
         # @return [String] URL торговой процедуры на площадке B2B
         # Поле возвращается при вызове метода RemoteAuction.getData
@@ -193,6 +212,15 @@ module B2bCenterApi
         #     0 — является одноэтапной
         #     1 — является двухэтапной
         attr_accessor :multi_stages
+        # @return [Integer] Является ли торговая процедура аукционом с предварительным рассмотрением аукционных заявок. Несовместимо с полем multi_stages.
+        #   Возможные значения:
+        #     "0" — признак выключен;
+        #     "1" — признак включен
+        attr_accessor :with_consideration_stage
+        # @return [String] Дата рассмотрения аукционных заявок. Указывается только в аукционах с предварительным 
+        # рассмотрением аукционных заявок.
+        # Формат значения dd.mm.YYYY HH:ii:ss
+        attr_accessor :date_qualified
         # @return [Integer] Является ли торговая процедура закрытой.
         #   Возможные значения:
         #     0 — является открытой
@@ -371,9 +399,11 @@ module B2bCenterApi
           t.department_id = r[:department_id]
           t.classifier_ids = r[:classifier_ids]
           t.okved_code = r[:okved_code]
+          t.okpd_code = r[:okpd_code]
           t.name = r[:name]
           t.comments = r[:comments]
           t.service = convert r[:service], :integer
+          t.product = r[:product]
           t.link_url = r[:link_url]
           t.quantity = convert r[:quantity], :float
           t.units = r[:units]
@@ -396,6 +426,8 @@ module B2bCenterApi
           t.responsible_user_id = r[:responsible_user_id]
           t.addresses_ids = r[:addresses_ids]
           t.alternative_offers = r[:alternative_offers]
+          t.is_common_delivery = r[:is_common_delivery]
+          t.is_joint_purchase = r[:is_joint_purchase]
           t.url = r[:url]
           t.customer_firm_id = r[:customer_firm_id]
           t.organizer_phone = r[:organizer_phone]
@@ -411,6 +443,8 @@ module B2bCenterApi
           t.results_date = r[:results_date]
           t.zgr_export = r[:zgr_export]
           t.multi_stages = r[:multi_stages]
+          t.with_consideration_stage = r[:with_consideration_stage]
+          t.date_qualified = r[:date_qualified]
           t.is_private = r[:is_private]
           t.allow_positions_analog = r[:allow_positions_analog]
           t.small_purchase = r[:small_purchase]

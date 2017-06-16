@@ -49,8 +49,14 @@ module B2bCenterApi
         attr_accessor :bank_details
         # @return [Integer] Код страны. Пример: код России = 643
         attr_accessor :country
+        # @return [BossesUsers]
+        # Руководящий состав организации
+        attr_accessor :bosses
         # @return [Boolean] Соответствует ли участник критериям СМП (среднего или малого предпринимательства)
         attr_accessor :is_smb
+        # @return [FirmInfoPhone]
+        # Телефоны организации
+        attr_accessor :phones
 
         # @return [FirmInfo]
         def self.from_response(response, client, firm_id)
@@ -81,8 +87,9 @@ module B2bCenterApi
           fi.org_details = convert(r[:org_details], :string)
           fi.bank_details = convert(r[:bank_details], :string)
           fi.country = convert(r[:country], :integer)
-          # fi.bosses = convert(r[:bosses], :string)
+          fi.bosses = convert(r[:bosses], :string)
           fi.is_smb = convert(r[:is_smb], :boolean)
+          fi.phones = convert(r[:phones], :string)
 
           fi
         end
