@@ -8,6 +8,15 @@ module B2bCenterApi
       @client_web = WebService::RemoteAuction.new(client)
     end
 
+    # Создать новый аукцион
+    # @param auction_data [WebService::Types::AuctionData, Hash] Данные для создания аукциона
+    # @return [Integer] id созданной процедуры
+    def create(auction_data)
+      auction_data = auction_data.to_h unless auction_data.is_a? Hash
+      response = @client_web.command :create, data: auction_data
+      response.result[:value]
+    end
+
     # Получить данные аукциона
     # @param auction_id [Integer] Номер процедуры
     # @return [WebService::Types::AuctionData]

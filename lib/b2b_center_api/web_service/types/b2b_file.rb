@@ -5,8 +5,10 @@ module B2bCenterApi
       class B2bFile < WebService::BaseType
         # @return [String] Наименование файла. Формат значения VARCHAR(255)
         attr_accessor :title
+
         # @return [String] Описание файла
         attr_accessor :description
+
         # Имя файла, например zayavka.doc.
         # Файл расположен в корневой папке пользователя (доступ по FTP).
         # Если пользователь не имеет прав для скачивания файла, то поле отсутствует.

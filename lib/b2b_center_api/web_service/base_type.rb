@@ -2,6 +2,8 @@ require 'b2b_center_api/web_service/type_cast'
 require 'b2b_center_api/remote_auction'
 require 'b2b_center_api/remote_market'
 require 'b2b_center_api/remote_tender'
+require 'date'
+require 'time'
 
 module B2bCenterApi
   module WebService
@@ -9,6 +11,8 @@ module B2bCenterApi
       include B2bCenterApi::WebService::TypeCast
 
       attr_writer :soap_client
+
+      attr_reader :date_fields
 
       NO_INSPECT_ATTRS = [:@soap_client]
 
@@ -26,6 +30,9 @@ module B2bCenterApi
         NO_INSPECT_ATTRS.each { |a| vars.delete(a) }
 
         vars.each { |var| hash[var.to_s.delete('@').to_sym] = instance_variable_get(var) }
+
+        date_fields.each { |d| hash[d] = parse_date(hash[d]) } if date_fields
+
         hash
       end
 
@@ -41,6 +48,15 @@ module B2bCenterApi
 
       def remote_tender
         B2bCenterApi::RemoteTender.new(@soap_client)
+      end
+
+      def parse_date(date)
+        if date.is_a? Date
+          return date.strftime("%d.%m.%Y")
+        elsif date.is_a? Time
+          return date.strftime('%d.%m.%Y %H:%M')
+        end
+        date
       end
 
       def self.to_array(obj)
