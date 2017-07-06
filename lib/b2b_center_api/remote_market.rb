@@ -13,7 +13,7 @@ module B2bCenterApi
     # @return [String[]]
     def get_addresses_ids(firm_id = 0)
       response = @client_web.command :get_addresses_ids, firm_id: firm_id
-      response.result[:ids]
+      WebService::Types::ArrayOfIds.from_response(response)
     end
 
     # Получить информацию об организации
