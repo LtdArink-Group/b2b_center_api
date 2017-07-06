@@ -8,6 +8,14 @@ module B2bCenterApi
       @client_web = WebService::RemoteMarket.new(client)
     end
 
+    # Получить список адресов организации
+    # @param firm_id [Integer] ID организации или 0 для своей организации
+    # @return [String[]]
+    def get_addresses_ids(firm_id = 0)
+      response = @client_web.command :get_addresses_ids, firm_id: firm_id
+      WebService::Types::ArrayOfIds.from_response(response)
+    end
+
     # Получить информацию об организации
     # @param firm_id [Integer] ID организации
     # @return [WebService::Types::FirmInfo]
