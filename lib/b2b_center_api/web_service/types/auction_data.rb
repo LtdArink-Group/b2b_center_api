@@ -559,6 +559,12 @@ module B2bCenterApi
         def participants
           remote_auction.get_participants(id)
         end
+
+        # Создать новый аукцион на b2b-center
+        # @return [Integer] id созданной процедуры
+        def create
+          remote_auction.create(self)
+        end
       end
     end
   end
