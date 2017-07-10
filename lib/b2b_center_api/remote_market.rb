@@ -16,6 +16,14 @@ module B2bCenterApi
       WebService::Types::ArrayOfIds.from_response(response)
     end
 
+    # Получить адресс
+    # @param address_id [Integer] ID адреса
+    # @return [String[]]
+    def get_address(address_id)
+      response = @client_web.command :get_address, address_id: address_id
+      WebService::Types::AddressData.from_response(response, @client)
+    end
+
     # Получить информацию об организации
     # @param firm_id [Integer] ID организации
     # @return [WebService::Types::FirmInfo]
