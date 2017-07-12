@@ -11,6 +11,13 @@ module B2bCenterApi
         Response.new(res)
       end
 
+      def command_with_attachments(name, attachments, params)
+        auth = B2bCenterApi::Settings.auth_options
+        params = auth.merge(params)
+        res = @client.call(method_fullname(name), message: params, attachments: attachments)
+        Response.new(res)
+      end
+
       def initialize(client)
         @client = client
       end
