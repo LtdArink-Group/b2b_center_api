@@ -15,8 +15,16 @@ module B2bCenterApi
       response = @client_web.command :get_addresses_ids, firm_id: firm_id
       WebService::Types::ArrayOfIds.from_response(response)
     end
+    
+    # Получить адрес организации по ОКАТО
+    # @param okato [Integer] ОКАТО организации
+    # @return [String[]]
+    def get_address_id_by_okato(okato:, address:, country: 0, firm_id: 0)
+      response = @client_web.command :get_address_id_by_okato, okato: okato, address: address, country: country, firm_id: firm_id
+       WebService::Types::Id.from_response(response)
+    end    
 
-    # Получить адресс
+    # Получить адрес
     # @param address_id [Integer] ID адреса
     # @return [String[]]
     def get_address(address_id)
