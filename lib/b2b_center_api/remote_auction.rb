@@ -8,6 +8,42 @@ module B2bCenterApi
       @client_web = WebService::RemoteAuction.new(client)
     end
 
+    # Загрузить документацию к аукциону/объявлению
+    # @param auction_id [Integer] Номер аукциона/объявления
+    # @param file [String] Путь к файлу
+    # @param type [String] Тип документации
+    #   Возможные значения:
+    #     'docs' - Документация к основному этапу торговой процедуры
+    #     'pre_docs' - Документация к предварительному этапу торговой процедуры
+    # @param append_mode [Integer] Загружать файлы в режиме добавления
+    #   Возможные значения:
+    #     0 - Режим замены (старые файлы документации будут удалены)
+    #     1 - Режим добавления (старые файлы документации не будут удалены, за исключением совпадающих имен)
+    # @return [String] Код ошибки (0 - если успешно)
+    def upload_doc(auction_id, file, type = 'docs', append_mode = 1)
+      response = @client_web.command_with_attachments :upload_doc, [file], auction_id: auction_id, type: type, append_mode: append_mode, attachment_name: WebService::Types::AttachmentName.new(file).to_h
+      response.status[:error_code]
+    end
+
+    # Загрузить документацию из нескольких файлов к аукциону/объявлению
+    # !Загружает не более двух файлов за раз, иначе ошибка!
+    # @param auction_id [Integer] Номер аукциона/объявления
+    # @param file [Array] Массив файлов
+    # @param type [String] Тип документации
+    #   Возможные значения:
+    #     'docs' - Документация к основному этапу торговой процедуры
+    #     'pre_docs' - Документация к предварительному этапу торговой процедуры
+    # @param append_mode [Integer] Загружать файлы в режиме добавления
+    #   Возможные значения:
+    #     0 - Режим замены (старые файлы документации будут удалены)
+    #     1 - Режим добавления (старые файлы документации не будут удалены, за исключением совпадающих имен)
+    # @return [String] Код ошибки (0 - если успешно)
+    def upload_docs(auction_id, files, type = 'docs', append_mode = 1)
+      files = [files] unless files.is_a? Array
+      response = @client_web.command_with_attachments :upload_docs, files, auction_id: auction_id, type: type, append_mode: append_mode, attachment_names: WebService::Types::AttachmentName.from_array(files)
+      response.status[:error_code]
+    end
+
     # Создать новый аукцион
     # @param auction_data [WebService::Types::AuctionData, Hash] Данные для создания аукциона
     # @return [Integer] id созданной процедуры
