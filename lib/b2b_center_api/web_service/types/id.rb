@@ -5,9 +5,9 @@ module B2bCenterApi
       class Id < WebService::BaseType
 
         def self.from_response(response)
-          r = convert( response.result, :Integer)
+          r = response.result
           return if r.nil?
-          r
+          convert(r, :Integer)
         end
       end
     end

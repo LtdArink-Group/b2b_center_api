@@ -17,7 +17,10 @@ module B2bCenterApi
     end
     
     # Получить адрес организации по ОКАТО
-    # @param okato [Integer] ОКАТО организации
+    # @param okato [String] ОКАТО организации
+    # @param country [Integer] Код страны. Если значение равно = 0, то используется код России = 643
+    # @param address [String] Адрес (обязательно для заполнения)
+    # @param firm_id [Integer] ID своей или подчиненной организации. Если = 0, то получаем идентификатор адреса своей организации
     # @return [String[]]
     def get_address_id_by_okato(okato:, address:, country: 0, firm_id: 0)
       response = @client_web.command :get_address_id_by_okato, okato: okato, address: address, country: country, firm_id: firm_id
