@@ -8,6 +8,18 @@ module B2bCenterApi
       @client_web = WebService::RemoteMarket.new(client)
     end
 
+    # Получить категории классификатора организации
+    # @param firm_id [Integer] ID организации или 0 для своей организации
+    # @param type [Integer] Тип продукции и услуг
+    #   Возможные значения:
+    #     '0' - Потребляемая продукция и услуги
+    #     '1' - Предлагаемая продукция и услуги
+    # @return [String[]]
+    def get_firm_classifier(firm_id, type)
+      response = @client_web.command :get_firm_classifier, firm_id: firm_id, type: type
+      WebService::Types::ArrayOfIds.from_response(response)
+    end
+
     # Получить список адресов организации
     # @param firm_id [Integer] ID организации или 0 для своей организации
     # @return [String[]]
@@ -15,7 +27,7 @@ module B2bCenterApi
       response = @client_web.command :get_addresses_ids, firm_id: firm_id
       WebService::Types::ArrayOfIds.from_response(response)
     end
-    
+
     # Получить адрес организации по ОКАТО
     # @param okato [String] ОКАТО организации
     # @param country [Integer] Код страны. Если значение равно = 0, то используется код России = 643
@@ -25,7 +37,7 @@ module B2bCenterApi
     def get_address_id_by_okato(okato:, address:, country: 0, firm_id: 0)
       response = @client_web.command :get_address_id_by_okato, okato: okato, address: address, country: country, firm_id: firm_id
        WebService::Types::Id.from_response(response)
-    end    
+    end
 
     # Получить адрес
     # @param address_id [Integer] ID адреса
