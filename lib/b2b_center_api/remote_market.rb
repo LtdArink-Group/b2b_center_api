@@ -24,7 +24,8 @@ module B2bCenterApi
     # @return [String[]]
     def get_address_id_by_okato(okato:, address:, country: 0, firm_id: 0)
       response = @client_web.command :get_address_id_by_okato, okato: okato, address: address, country: country, firm_id: firm_id
-       WebService::Types::Id.from_response(response)
+      WebService::Types::Id.from_response(response)
+      
     end    
 
     # Получить адрес
@@ -50,5 +51,24 @@ module B2bCenterApi
       response = @client_web.command :find_firm, firm_request: { inn: inn }
       WebService::Types::FirmData.from_response(response, @client)
     end
+    
+    # Получить список услуг
+    # @param 
+    # @return [String[]]
+    def get_services
+      response = @client_web.command :get_services, {}
+      WebService::Types::ArrayOfServices.from_response(response)
+    end  
+    
+    # Создание/изменение адреса
+    # @param address_id [Integer] ID адреса. Чтобы создать новый адрес поле id должно быть = 0, либо отсутствовать
+    #        firm_id [Integer] ID организации
+    #        
+    # @return [Integer]
+    def update_address(address_data)
+      response = @client_web.command :update_address, data: address_data.to_h
+      WebService::Types::Id.from_response(response)
+    end
+    
   end
 end
