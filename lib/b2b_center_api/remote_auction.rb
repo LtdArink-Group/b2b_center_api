@@ -8,6 +8,23 @@ module B2bCenterApi
       @client_web = WebService::RemoteAuction.new(client)
     end
 
+    # Загрузить документацию к аукциону/объявлению через url
+    # @param auction_id [Integer] Номер аукциона/объявления
+    # @param url [String] Путь к файлу
+    # @param type [String] Тип документации
+    #   Возможные значения:
+    #     'docs' - Документация к основному этапу торговой процедуры
+    #     'pre_docs' - Документация к предварительному этапу торговой процедуры
+    # @param append_mode [Integer] Загружать файлы в режиме добавления
+    #   Возможные значения:
+    #     0 - Режим замены (старые файлы документации будут удалены)
+    #     1 - Режим добавления (старые файлы документации не будут удалены, за исключением совпадающих имен)
+    # @return [String] Код ошибки (0 - если успешно)
+    def upload_doc_from_url(auction_id, url, type = 'docs', append_mode = 1)
+      response = @client_web.command :upload_doc, auction_id: auction_id, type: type, append_mode: append_mode, url: url
+      response.status[:error_code]
+    end
+
     # Загрузить документацию к аукциону/объявлению
     # @param auction_id [Integer] Номер аукциона/объявления
     # @param file [String] Путь к файлу
