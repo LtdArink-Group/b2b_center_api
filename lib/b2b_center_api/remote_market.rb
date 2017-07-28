@@ -20,6 +20,14 @@ module B2bCenterApi
       WebService::Types::ArrayOfIds.from_response(response)
     end
 
+    # Получить строки классификатора
+    # @param ids [String[]] ID категорий классификатора организации
+    # @return [String[]]
+    def get_classifier_rows(ids)
+      response = @client_web.command :get_classifier_rows, ids: ids
+      WebService::Types::OkdpRow.from_response(response)
+    end
+
     # Получить список адресов организации
     # @param firm_id [Integer] ID организации или 0 для своей организации
     # @return [String[]]
@@ -62,24 +70,23 @@ module B2bCenterApi
       response = @client_web.command :find_firm, firm_request: { inn: inn }
       WebService::Types::FirmData.from_response(response, @client)
     end
-    
+
     # Получить список услуг
-    # @param 
+    # @param
     # @return [String[]]
     def get_services
       response = @client_web.command :get_services, {}
       WebService::Types::ArrayOfServices.from_response(response)
-    end  
-    
+    end
+
     # Создание/изменение адреса
     # @param address_id [Integer] ID адреса. Чтобы создать новый адрес поле id должно быть = 0, либо отсутствовать
     #        firm_id [Integer] ID организации
-    #        
+    #
     # @return [Integer]
     def update_address(address_data)
       response = @client_web.command :update_address, data: address_data.to_h
       WebService::Types::Id.from_response(response)
     end
-    
   end
 end
