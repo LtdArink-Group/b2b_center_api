@@ -8,6 +8,18 @@ module B2bCenterApi
       @client_web = WebService::RemoteAuction.new(client)
     end
 
+    # Поулчить данные о протоколе вскрытия конвертов с предложениями
+    # @param auction_id [Integer] Номер аукциона/объявления
+    # @param haggling_num [Integer] Номер этапа переторжки
+    #   Допустимые значени:
+    #     0 - Основной этап (По умолчанию)
+    #     >0 - Этап переторжки с указанным номером
+    # @return [AuctionParticipantsProtocol]
+    def get_participants_protocol(auction_id, haggling_num = 0)
+      response = @client_web.command :get_participants_protocol, auction_id: auction_id, haggling_num: haggling_num
+      WebService::Types::AuctionParticipantsProtocol.from_response(response)
+    end
+
     # Загрузить документацию к аукциону/объявлению через url
     # @param auction_id [Integer] Номер аукциона/объявления
     # @param url [String] Путь к файлу
