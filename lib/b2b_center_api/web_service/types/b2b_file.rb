@@ -18,7 +18,7 @@ module B2bCenterApi
 
         # @return [B2bFile[]]
         def self.from_part_response(response)
-          return if response.nil?
+          return [] if response.nil?
           files = to_array(response[:file]).map do |f|
             file = B2bFile.new
             file.title = convert(f[:title], :string)
