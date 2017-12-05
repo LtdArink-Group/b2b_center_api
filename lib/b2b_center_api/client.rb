@@ -2,7 +2,9 @@ require 'b2b_center_api/settings'
 require 'b2b_center_api/remote_auction'
 require 'b2b_center_api/remote_market'
 require 'b2b_center_api/remote_tender'
-require 'savon'
+require 'bundler'
+Bundler.require(:default, :savon)
+# require 'savon'
 
 module B2bCenterApi
   # Client for API

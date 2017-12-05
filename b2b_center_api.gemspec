@@ -22,5 +22,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'rspec'
 
+  # spec.add_dependency 'savon', '~> 2.11.0'
   spec.add_dependency 'socksify'
 end
