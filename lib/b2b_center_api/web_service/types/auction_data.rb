@@ -460,6 +460,14 @@ module B2bCenterApi
         # Формат значения: VARCHAR(2048)
         attr_accessor :place_summarizing
 
+        # @return [Integer]
+        # Ограничивать предложения участников указанной в извещении стоимостью.
+        #   Возможные значения:
+        # “0” — не ограничивать
+        # “1" — ограничивать
+        attr_accessor :price_begin_limited
+
+
         # @return [AuctionData]
         def self.from_response(response, client, tender_id)
           r = response.result[:data]
@@ -552,6 +560,7 @@ module B2bCenterApi
           t.date_job_begin = convert(r[:date_job_begin], :date)
           t.date_job_end = convert r[:date_job_end], :date
           t.place_summarizing = convert r[:place_summarizing], :string
+          t.price_begin_limited = convert r[:price_begin_limited], :integer
           t
         end
 
