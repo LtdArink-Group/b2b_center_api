@@ -8,6 +8,13 @@ module B2bCenterApi
       @client_web = WebService::RemoteMarket.new(client)
     end
 
+    # Получить дополнительные поля организации
+    # @return [AuctionLotField[]]
+    def get_lot_fields
+      response = @client_web.command :get_lot_fields, {}
+      WebService::Types::ArrayOfAuctionLotFields.from_response(response)
+    end
+
     # Получить категории классификатора организации
     # @param firm_id [Integer] ID организации или 0 для своей организации
     # @param type [Integer] Тип продукции и услуг

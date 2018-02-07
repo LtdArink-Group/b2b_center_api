@@ -402,7 +402,7 @@ module B2bCenterApi
         # Возможность их использования предоставляется оператором
         attr_accessor :additional_trading_fields
 
-        # @return [AuctionLotFieldValue]
+        # @return [Hash[]]
         # Дополнительные поля торговой процедуры (дополнительные поля лотов).
         # Устанавливаются в личном кабинете или методом RemoteMarket.addLotFields.
         # Возможность их использования предоставляется оператором
