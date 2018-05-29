@@ -4,4 +4,4 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'savon', git: 'git@github.com:dukaarpad/savon.git'
+gem 'savon', git: 'git@github.com:savonrb/savon.git', branch: 'master'
